@@ -22,7 +22,7 @@ class Calendar extends React.Component {
             console.log(section);
             var [mon, tue, wed, thu, fri] = [{}, {}, {}, {}, {}];
 
-            if (section.length !== 2) {
+            if (section.length !== 3) {
                 let lec = (section[0] + "\n" + section[1]);
                 let lecTime = this.props.data[section[0]].sections[section[1]].time;
 
@@ -55,7 +55,7 @@ class Calendar extends React.Component {
 
             var sec = '';
             let secTime = '';
-            if (section.length === 2) {
+            if (section.length === 3) {
                 secTime = this.props.data[section[0]].sections[section[1]].time;
                 sec = section[0] + "\n" + section[1];
             } else {
@@ -109,12 +109,12 @@ class Calendar extends React.Component {
             } else {
                 for (const schedule of newScheduleList) {
                     for (const section of course) {
-                        console.log(section);
+                        // console.log(section);
 
                         let newSchedule = JSON.parse(JSON.stringify(schedule));
                         let conflicted = false;
 
-                        if (section.length !== 2) {
+                        if (section.length !== 3) {
                             let lec = (section[0] + "\n" + section[1]);
                             let lecTime = this.props.data[section[0]].sections[section[1]].time;
                             //eslint-disable-next-line
@@ -157,7 +157,7 @@ class Calendar extends React.Component {
 
                         var sec = '';
                         let secTime = '';
-                        if (section.length === 2) {
+                        if (section.length === 3) {
                             secTime = this.props.data[section[0]].sections[section[1]].time;
                             sec = section[0] + "\n" + section[1];
                         } else {

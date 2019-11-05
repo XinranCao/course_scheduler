@@ -20,10 +20,10 @@ class Schedule extends React.Component {
             Object.keys(selectedCourses[courseNum].sections).forEach(sectionNum => {
 
                 if (Object.entries(selectedCourses[courseNum].sections[sectionNum].subsections).length === 0) {
-                    courseKey.push([courseNum, sectionNum]);
+                    courseKey.push([courseNum, sectionNum, selectedCourses[courseNum].sections[sectionNum].time]);
                 } else {
                     Object.keys(selectedCourses[courseNum].sections[sectionNum].subsections).forEach(subsectionNum => {
-                        courseKey.push([courseNum, sectionNum, subsectionNum]);
+                        courseKey.push([courseNum, sectionNum, subsectionNum, selectedCourses[courseNum].sections[sectionNum].subsections[subsectionNum].time]);
                     });
                 }
             });
@@ -32,7 +32,6 @@ class Schedule extends React.Component {
         this.setState({courseList: newList
         });
         this.argList = JSON.parse(JSON.stringify(newList));
-
     }
 
     render() {
@@ -42,8 +41,8 @@ class Schedule extends React.Component {
                 <Cart data={this.props.data}
                     callBackCartToApp={this.props.callBackSchedule}
                     callBackCartToSchedule={(selectedCourses) => this.callBackFromCart(selectedCourses)} />
-                {console.log(this.props.filteredCourses)}
-                {console.log(this.props.data)}
+                {/* {console.log(this.props.filteredCourses)} */}
+                {/* {console.log(this.props.data)} */}
                 <Calendar data={this.props.data} filteredCourses = {this.props.filteredCourses} courseList = {this.argList}/>
             </>
         )
