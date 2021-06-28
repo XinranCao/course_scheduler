@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css';
+import './oldVersion.css';
 import Sidebar from './Sidebar';
 import CourseArea from './CourseArea';
 import Schedule from './Schedule';
@@ -7,7 +7,7 @@ import Tabs from 'react-bootstrap/Tabs'
 import Tab from 'react-bootstrap/Tab'
 import ClassInfo from '../ClassInfo.json'
 
-class App extends React.Component {
+class Old extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -182,4 +182,4 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default Old;
