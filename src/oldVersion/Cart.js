@@ -43,7 +43,7 @@ class Cart extends React.Component {
 
                 delete newSelectedCourses[courseNum];
 
-            } else if (flag){
+            } else if (flag) {
 
                 newCheckboxChecked[courseNum + sectionNum + subsectionNum] = true;
 
@@ -87,7 +87,7 @@ class Cart extends React.Component {
                     delete newSelectedCourses[courseNum];
 
                 }
-            } else if (flag){
+            } else if (flag) {
 
                 newCheckboxChecked[courseNum + sectionNum + subsectionNum] = true;
 
@@ -98,7 +98,7 @@ class Cart extends React.Component {
                     });
 
                     newSelectedCourses[courseNum].sections[sectionNum] = JSON.parse(JSON.stringify(this.props.data[courseNum].sections[sectionNum]));
-                
+
                 } else {
 
                     newCheckboxChecked[courseNum + NaN + subsectionNum] = true;
@@ -124,7 +124,7 @@ class Cart extends React.Component {
             if (newCheckboxChecked[courseNum + sectionNum + subsectionNum]) {
 
                 delete newCheckboxChecked[courseNum + sectionNum + subsectionNum];
-                
+
                 // delete subsection
                 delete newSelectedCourses[courseNum].sections[sectionNum].subsections[subsectionNum];
 
@@ -136,11 +136,11 @@ class Cart extends React.Component {
                     let item2 = newSelectedCourses[courseNum].sections;
                     // when all ections a deleted, delete the course
                     if (Object.entries(item2).length === 0 && item2.constructor === Object)
-                    delete newSelectedCourses[courseNum];
+                        delete newSelectedCourses[courseNum];
                     delete newCheckboxChecked[courseNum + NaN + NaN];
                 }
 
-            } else if (flag){
+            } else if (flag) {
 
                 newCheckboxChecked[courseNum + sectionNum + subsectionNum] = true;
 
@@ -190,7 +190,7 @@ class Cart extends React.Component {
             checkboxChecked: newCheckboxChecked,
             selectedCourses: newSelectedCourses
         });
-        
+
     }
 
     showSubSections(courseNum, sectionNum, subsections) {
@@ -207,8 +207,10 @@ class Cart extends React.Component {
                     </td>
                     <td>{Object.entries(subsections[key].time).join('; ')}</td>
                     <td><Button variant="outline-danger" size="sm" style={{ float: 'right' }}
-                        onClick={() => {this.props.callBackCartToApp('subSections', this.props.data[courseNum], sectionNum, key)
-                                        this.updateSelectedCourses('subsection', courseNum, sectionNum, key, false)}}>Remove</Button>
+                        onClick={() => {
+                            this.props.callBackCartToApp('subSections', this.props.data[courseNum], sectionNum, key)
+                            this.updateSelectedCourses('subsection', courseNum, sectionNum, key, false)
+                        }}>Remove</Button>
                     </td>
                 </tr>
             )
@@ -234,8 +236,10 @@ class Cart extends React.Component {
 
                                 <td>{Object.entries(sections[key].time).join("; ")}</td>
                                 <td><Button variant="outline-danger" size="sm" style={{ float: 'right' }}
-                                    onClick={() => {this.props.callBackCartToApp('sections', this.props.data[courseNum], key, NaN)
-                                                    this.updateSelectedCourses('section', courseNum, key, NaN, false)}}>Remove</Button></td>
+                                    onClick={() => {
+                                        this.props.callBackCartToApp('sections', this.props.data[courseNum], key, NaN)
+                                        this.updateSelectedCourses('section', courseNum, key, NaN, false)
+                                    }}>Remove</Button></td>
                             </tr>
                             {this.showSubSections(courseNum, key, sections[key].subsections)}
                         </tbody>
@@ -261,8 +265,10 @@ class Cart extends React.Component {
                             </Form.Group>
 
                             <Button variant="outline-danger" size="sm" style={{ float: 'right' }}
-                                onClick={() => {this.props.callBackCartToApp('all', courses[key], NaN, NaN)
-                                                this.updateSelectedCourses('all', key, NaN, NaN, false)}}>Remove
+                                onClick={() => {
+                                    this.props.callBackCartToApp('all', courses[key], NaN, NaN)
+                                    this.updateSelectedCourses('all', key, NaN, NaN, false)
+                                }}>Remove
                             </Button>
                             <Card.Title>
                                 {key}
@@ -300,13 +306,13 @@ class Cart extends React.Component {
     render() {
         return (
             <>
-                <Card style={{width: 'calc(30vw - 5px)', height: 'calc(100vh - 7vh)', marginTop: '5px', marginLeft: '5px', position: 'fixed' }}>
+                <Card style={{ width: 'calc(30vw - 5px)', height: 'calc(100vh - 7vh)', marginTop: '5px', marginLeft: '5px', position: 'fixed' }}>
                     <Card.Header style={{ fontSize: "30px" }}>Cart</Card.Header>
                     <Card.Header style={{ fontSize: "22px" }}>
                         Credits chosen: {this.calculateCredits()}
                         <Button style={{ width: '225px', float: "right" }}
-                                onClick={() => this.props.callBackCartToSchedule(this.state.selectedCourses)}>
-                            Generate Schedule ->
+                            onClick={() => this.props.callBackCartToSchedule(this.state.selectedCourses)}>
+                            {'Generate Schedule ->'}
                         </Button>
                     </Card.Header>
                     <div style={{ overflow: 'auto', marginTop: '5px' }}>{this.showCourseInCart()}</div>

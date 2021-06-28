@@ -5,6 +5,7 @@ import CourseArea from './CourseArea';
 import Schedule from './Schedule';
 import Tabs from 'react-bootstrap/Tabs'
 import Tab from 'react-bootstrap/Tab'
+import ClassInfo from '../ClassInfo.json'
 
 class App extends React.Component {
   constructor(props) {
@@ -18,9 +19,11 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    fetch('https://mysqlcs639.cs.wisc.edu:5000/classes').then(
-      res => res.json()
-    ).then(data => this.setState({ allCourses: data, filteredCourses: data, subjects: this.getSubjects(data) }));
+    // fetch('https://mysqlcs639.cs.wisc.edu:5000/classes').then(
+    //   res => res.json()
+    // ).then(data => this.setState({ allCourses: data, filteredCourses: data, subjects: this.getSubjects(data) }));
+    console.log('==', ClassInfo)
+    this.setState({ allCourses: ClassInfo, filteredCourses: ClassInfo, subjects: this.getSubjects(ClassInfo) })
   }
 
   getSubjects(data) {
@@ -52,12 +55,12 @@ class App extends React.Component {
     // when "add all" button is clicked
     if (key === 'all') {
       newSchedule[course.number] =
-        {
-          "name": course.name,
-          "credit": course.credits,
-          "number": course.number,
-          "sections": course.sections
-        };
+      {
+        "name": course.name,
+        "credit": course.credits,
+        "number": course.number,
+        "sections": course.sections
+      };
 
       // when user choose to add sections to schedule
     } else if (key === 'sections') {
@@ -70,12 +73,12 @@ class App extends React.Component {
         }
       } else {
         newSchedule[course.number] =
-          {
-            "name": course.name,
-            "credit": course.credits,
-            "number": course.number,
-            "sections": { [sectionNum]: course.sections[sectionNum] }
-          };
+        {
+          "name": course.name,
+          "credit": course.credits,
+          "number": course.number,
+          "sections": { [sectionNum]: course.sections[sectionNum] }
+        };
       }
 
       // when user choose to add subsections to schedule
@@ -98,17 +101,17 @@ class App extends React.Component {
 
       } else {
         newSchedule[course.number] =
-          {
-            "name": course.name,
-            "credit": course.credits,
-            "number": course.number,
-            "sections": {
-              [sectionNum]: {
-                "time": course.sections[sectionNum].time,
-                "subsections": { [subSectionNum]: course.sections[sectionNum].subsections[subSectionNum] }
-              }
+        {
+          "name": course.name,
+          "credit": course.credits,
+          "number": course.number,
+          "sections": {
+            [sectionNum]: {
+              "time": course.sections[sectionNum].time,
+              "subsections": { [subSectionNum]: course.sections[sectionNum].subsections[subSectionNum] }
             }
-          };
+          }
+        };
       }
     }
     return newSchedule;
@@ -170,7 +173,7 @@ class App extends React.Component {
           </Tab>
           <Tab eventKey="Schedule" title="Schedule">
             <div>
-              <Schedule callBackSchedule={(key, course, sectionNum, subSectionNum) => this.callBackSchedule(key, course, sectionNum, subSectionNum)} data={this.state.schedule} filteredCourses = {this.state.filteredCourses} />
+              <Schedule callBackSchedule={(key, course, sectionNum, subSectionNum) => this.callBackSchedule(key, course, sectionNum, subSectionNum)} data={this.state.schedule} filteredCourses={this.state.filteredCourses} />
             </div>
           </Tab>
         </Tabs>

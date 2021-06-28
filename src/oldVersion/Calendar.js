@@ -17,7 +17,7 @@ class Calendar extends React.Component {
     }
 
     initializeScheduleList(course, newScheduleList) {
-        
+
         for (const section of course) {
             console.log(section);
             var [mon, tue, wed, thu, fri] = [{}, {}, {}, {}, {}];

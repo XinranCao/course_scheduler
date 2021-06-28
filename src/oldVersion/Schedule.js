@@ -29,13 +29,14 @@ class Schedule extends React.Component {
             });
             newList.push(courseKey);
         });
-        this.setState({courseList: newList
+        this.setState({
+            courseList: newList
         });
         this.argList = JSON.parse(JSON.stringify(newList));
     }
 
     render() {
-        
+
         return (
             <>
                 <Cart data={this.props.data}
@@ -43,7 +44,7 @@ class Schedule extends React.Component {
                     callBackCartToSchedule={(selectedCourses) => this.callBackFromCart(selectedCourses)} />
                 {/* {console.log(this.props.filteredCourses)} */}
                 {/* {console.log(this.props.data)} */}
-                <Calendar data={this.props.data} filteredCourses = {this.props.filteredCourses} courseList = {this.argList}/>
+                <Calendar data={this.props.data} filteredCourses={this.props.filteredCourses} courseList={this.argList} />
             </>
         )
     }

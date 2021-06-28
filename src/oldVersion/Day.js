@@ -49,12 +49,12 @@ class Day extends React.Component {
     }
     convertTime(time) {
         let hour = time.split(':')[0];
-        if(time.includes('pm') && (hour != 12)){
-           hour = Number(hour) +  12;
+        if (time.includes('pm') && (hour !== 12)) {
+            hour = Number(hour) + 12;
         }
-        let minute = Number(time.split(':')[1].trim().slice(0,-2));
-        return Number(hour) + minute/60;
-       }
+        let minute = Number(time.split(':')[1].trim().slice(0, -2));
+        return Number(hour) + minute / 60;
+    }
 }
 
-export default Day; 
+export default Day;
