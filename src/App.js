@@ -16,6 +16,17 @@ class App extends React.Component {
 
     }
 
+    clickVersionBox(index) {
+        const boxes = document.getElementsByClassName('boxContent')
+        console.log('box',index)
+
+        for (let i = 0; i < boxes.length; i++) {
+            i === index
+            ? boxes[i].classList.remove('view')
+            : boxes[i].classList.add('view')
+        }
+    }
+
 
     render() {
 
@@ -38,27 +49,29 @@ class App extends React.Component {
         return (
             <>
                 <div className='mainPage' style={{ display: versionSwitch === 0 ? '' : 'none' }}>
-                    <div className='previewSection'>
+                    <div className='versionBox'>
                         {
-                            [old_screenshot, new_screenshot].map((item, index) => (
-                                <div
-                                    className='versionBox'
-                                    key={item}
-                                    onClick={() => this.setState({ versionSwitch: index + 1 })}>
-                                    <div className='versionTitle'>
-                                        {index === 0 ? 'Old Version' : 'New Version'}
+                            [old_screenshot, new_screenshot].map((item, index) => {
+                                let initClassName = index === 0 ? 'boxContent view' : 'boxContent'
+                                return <div 
+                                        className={initClassName}
+                                        key={item}
+                                        onClick={() => this.clickVersionBox(index)}>
+
+                                        <div className='versionTitle'>
+                                            {index === 0 ? 'Old Version' : 'New Version'}
+                                        </div>
+                                        <div
+                                            className='previewBox'
+                                            style={{ backgroundImage: `url(${item})` }}
+                                        >
+                                        </div>
+                                        <div className='text'>
+                                            {index === 0 ? oldInfo : newInfo}
+                                            <span>CLICK TO VIEW</span>
+                                        </div>
                                     </div>
-                                    <div
-                                        className='previewBox'
-                                        style={{ backgroundImage: `url(${item})` }}
-                                    >
-                                    </div>
-                                    <div className='text'>
-                                        {index === 0 ? oldInfo : newInfo}
-                                        <span>CLICK TO VIEW</span>
-                                    </div>
-                                </div>
-                            ))
+                            })
                         }
                     </div>
                 </div>
