@@ -1,5 +1,6 @@
 import React from 'react'
 import Old from './oldVersion/Old'
+import New from './newVersion/New'
 import old_screenshot from './img/old_screenshot.png'
 import new_screenshot from './img/new_screenshot.png'
 import './App.css'
@@ -8,7 +9,7 @@ class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            versionSwitch: 0,
+            versionSwitch: -1,
             versionPreview: 0
         };
     }
@@ -35,11 +36,10 @@ class App extends React.Component {
 
         const { versionSwitch, versionPreview } = this.state
         let showVersion = null
-        if (versionSwitch === 1) {
+        if (versionSwitch === 0) {
             showVersion = < Old />
-        } else if (versionSwitch === 2) {
-            // showVersion = < Old />
-            showVersion = '111'
+        } else if (versionSwitch === 1) {
+            showVersion = < New />
         }
 
         const oldInfo = <>
@@ -51,7 +51,7 @@ class App extends React.Component {
 
         return (
             <>
-                <div className='mainPage' style={{ display: versionSwitch === 0 ? '' : 'none' }}>
+                <div className='mainPage' style={{ display: versionSwitch === -1 ? '' : 'none' }}>
                     <div className='content'>
                         <div className='versionBox'>
                             {
@@ -68,7 +68,7 @@ class App extends React.Component {
                                             style={{ backgroundImage: `url(${item})` }}
                                         >
                                         </div>
-                                        <div className='text'>
+                                        <div className='text' onClick={()=>this.setState({ versionSwitch: index })}>
                                             {index === 0 ? oldInfo : newInfo}
                                             <span>CLICK TO VIEW</span>
                                         </div>
