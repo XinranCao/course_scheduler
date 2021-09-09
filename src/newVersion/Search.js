@@ -1,5 +1,4 @@
 import React from 'react';
-import Alert from 'react-bootstrap/Alert'
 import './newVersion.css';
 
 class Search extends React.Component {
@@ -28,6 +27,11 @@ class Search extends React.Component {
     this.myFormRef.reset(); 
   }
 
+  removeKeyword(index) {
+    const { keywordList } = this.state
+    keywordList.splice(index, 1);
+    this.setState({ keywordList })
+  }
 
   render() {
 
@@ -51,20 +55,23 @@ class Search extends React.Component {
               <input id='keywordInput' type='text' placeholder="Enter keyword" ref={this.keyword} autoComplete="off"/>
             </form>
           </div>
-          <div className='chosenTags'>
-            {
-              keywordList.length !== 0 
-                ? <div className='keywordList'>
+          {
+            keywordList.length !== 0 
+              ? <div className='chosenTags'>
                   <span className='settingText'>Current keywords</span>
-                  {
-                    keywordList.map((item,index)=>(
-                      <div className='currentKeyword' key={item}>{item}</div>
-                    ))
-                  }
-                </div>
-                : null
-            }
-          </div>
+                  <div className='keywordList'>
+                    {
+                      keywordList.map((item,index)=>(
+                        <div className='currentKeyword' key={item}>
+                          {item}
+                          <div className='removeBtn' onClick={ ()=>this.removeKeyword(index)} >{`\u2715`}</div>
+                        </div>
+                      ))
+                    }
+                  </div>
+              </div>
+              : null
+          }
         </div>
       </div>
 
