@@ -27,13 +27,14 @@ class New extends React.Component {
      
     return <div className='page'>
         <div className='navBar'>
+          <img src={require('../img/logo3.svg')} height='75%'/>
             <span className='navTitle'>{'Course Scheduler'}</span>
             {
                 ['Search','Schedule'].map((item,index) => (
                     <div 
                         key={item}
-                        className= {navKey === item? 'tabActive': 'tab' }
-                        onClick={()=>this.setState({ navKey: item})}>
+                        className= { navKey === item ? 'tabActive': 'tab' }
+                        onClick={()=>this.setState({ navKey: item })}>
                             {item}
                     </div>
                 ))
@@ -42,9 +43,9 @@ class New extends React.Component {
 
         <div className='mainContent'>
             { 
-                navKey === 'search' 
-                ? <Search />  
-                : <Scheduler /> 
+                navKey === 'Search' 
+                    ? <Search />  
+                    : <Scheduler /> 
             }
         </div>
 
