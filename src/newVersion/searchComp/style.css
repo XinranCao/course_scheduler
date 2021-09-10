@@ -1,0 +1,142 @@
+.searchToolSec,
+.courseListSec {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 5px;
+  background: #f7f7f7;
+}
+
+.searchToolSec {
+  width: 280px;
+}
+
+.courseListSec {
+  width: 400px;
+  margin: 0 8px;
+}
+
+.searchTitle {
+  display: flex;
+  align-items: center;
+  font-weight: 700;
+  font-size: 24px;
+  color: #fff;
+  height: 60px;
+  width: 100%;
+  background: #0479a8;
+  border-radius: 5px 5px 0 0;
+  padding-left: 16px;
+  box-sizing: border-box;
+  user-select: none;
+}
+
+.searchSetting {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-top: 16px;
+  /* padding: 0 16px; */
+  box-sizing: border-box;
+}
+
+.settingText {
+  font-size: 22px;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.tagSetting,
+.tagInput,
+.chosenTags {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin: 16px;
+  user-select: none;
+}
+
+.chosenTags {
+  margin-right: 0;
+}
+
+#modeSelect,
+#keywordInput {
+  height: auto;
+  width: 100%;
+  color: #494949;
+  font-size: 20px;
+  padding: 8px 0;
+  border-color: transparent;
+  outline: none;
+  box-sizing: border-box;
+  border-bottom: 1px solid #adadad;
+}
+
+#modeSelect:focus-visible,
+#keywordInput:focus-visible {
+  border-bottom: 1px solid #0479a8;
+}
+
+.alert {
+  color: rgb(197, 5, 12);
+  font-size: 14px;
+  position: absolute;
+  left: 0px;
+  bottom: -24px;
+}
+
+.keywordList {
+  position: relative;
+  display: flex;
+  align-content: flex-start;
+  flex-wrap: wrap;
+  height: 416px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.currentKeyword:hover {
+  z-index: 100;
+}
+
+.currentKeyword {
+  position: relative;
+  display: flex;
+  box-sizing: border-box;
+  height: 40px;
+  width: fit-content;
+  margin: 2px 8px 4px 0;
+  padding: 6px 24px 0 8px;
+  border: 1px solid;
+  font-size: 20px;
+  color: #0479a8;
+  border-radius: 5px;
+  border-color: rgba(0, 0, 0, 0.12);
+  box-shadow: 0 0 0 0 rgb(0 0 0 / 20%), 0 0 0 0 rgb(0 0 0 / 14%),
+    0 0 0 0 rgb(0 0 0 / 12%);
+  user-select: text;
+  cursor: pointer;
+}
+
+.currentKeyword:hover {
+  border-color: rgba(0, 0, 0, 0.3);
+}
+
+.removeBtn {
+  display: none;
+}
+.currentKeyword:hover .removeBtn {
+  display: flex;
+  position: absolute;
+  right: 6px;
+  top: 6px;
+  font-size: 18px;
+  color: #c5050c;
+  user-select: none;
+}
+
+.removeBtn:hover {
+  font-weight: bold;
+}
