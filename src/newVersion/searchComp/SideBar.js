@@ -7,6 +7,7 @@ class SideBar extends React.Component {
     this.mode = React.createRef();
     this.keyword = React.createRef();
     this.state = {
+      filterMode: 'intersection',
       keywordList: [],
       alertMsg: '',
       alertShow: false,
@@ -17,7 +18,7 @@ class SideBar extends React.Component {
   }
 
   addKeyword() {
-    const { keywordList } = this.state
+    const { keywordList, filterMode } = this.state
     const curr = this.keyword.current.value;
 
     if (curr.match(/^\s+$/) || curr.length === 0 ) {
@@ -30,13 +31,15 @@ class SideBar extends React.Component {
       keywordList.push(curr);
       this.setState({ keywordList, alertMsg: '' });
       this.myFormRef.reset(); 
+      this.props.filterCourse(keywordList, filterMode)
     }
   }
 
   removeKeyword(index) {
-    const { keywordList } = this.state
+    const { keywordList, filterMode } = this.state
     keywordList.splice(index, 1);
     this.setState({ keywordList })
+    this.props.filterCourse(keywordList, filterMode)
   }
 
   render() {
@@ -48,7 +51,13 @@ class SideBar extends React.Component {
         <div className='searchSetting'>
           <div className='tagSetting'>
             <span className='settingText'>Search mode</span>
-              <select id='modeSelect' ref={this.mode} onChange={() => console.log(this.mode.current.value)}>
+              <select 
+                id='modeSelect' 
+                ref={this.mode} 
+                onChange={ () => {
+                  this.setState({ filterMode: this.mode.current.value });
+                  this.props.filterCourse(keywordList, this.mode.current.value)
+                }}>
                 <option key="intersection" value='intersection'>Intersection of tags</option>
                 <option key="union" value='union'>Union of tags</option>
               </select>

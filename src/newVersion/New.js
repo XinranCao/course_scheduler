@@ -8,23 +8,35 @@ class New extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-        navKey: 'Search'
+        navKey: 'Search',
+        allCourses: {},
+        filteredCourses: {},
+        subjects: [],
+        schedule: {}
     };
   }
 
   componentDidMount() {
-    // fetch('https://mysqlcs639.cs.wisc.edu:5000/classes').then(
-    //   res => res.json()
-    // ).then(data => this.setState({ allCourses: data, filteredCourses: data, subjects: this.getSubjects(data) }));
-    // console.log('==', ClassInfo)
-    // this.setState({ allCourses: ClassInfo, filteredCourses: ClassInfo, subjects: this.getSubjects(ClassInfo) })
+    console.log('===',ClassInfo)
+    this.setState({ 
+      allCourses: ClassInfo, 
+      filteredCourses: ClassInfo, 
+      subjects: this.getSubjects(ClassInfo) 
+    })
   }
 
+  getSubjects(data) {
+    let subjects = [];
+    subjects.push("All");
+    Object.values(data).map( item => (
+      subjects.includes(item.subject) ? null : subjects.push(item.subject) 
+    ))
+    return subjects;
+  }
 
   render() {
+    const { navKey, allCourses, filteredCourses, subjects, schedule } = this.state
 
-    const { navKey } = this.state
-     
     return <div className='page'>
         <div className='navBar'>
           <img src={require('../img/logo3.svg')} height='75%' alt='logo'/>
@@ -44,7 +56,10 @@ class New extends React.Component {
         <div className='mainContent'>
             { 
                 navKey === 'Search' 
-                    ? <Search />  
+                    ? <Search 
+                        allCourses ={allCourses}
+                        filteredCourses={filteredCourses} 
+                        updateFilteredCourses={ (filteredCourses) => this.setState({ filteredCourses }) } />  
                     : <Scheduler /> 
             }
         </div>
