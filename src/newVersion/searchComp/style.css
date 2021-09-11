@@ -1,5 +1,6 @@
 .searchToolSec,
-.courseListSec {
+.courseListSec,
+.detailInfoSec {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -14,6 +15,10 @@
 .courseListSec {
   width: 460px;
   margin: 0 8px;
+}
+
+.detailInfoSec {
+  width: calc(100% - 756px);
 }
 
 .searchTitle {
@@ -146,35 +151,75 @@
   flex-direction: column;
   height: calc(100% - 60px);
   width: 100%;
-  padding: 16px 0 16px 16px;
+  padding-bottom: 8px;
   box-sizing: border-box;
   overflow-y: scroll;
 }
 
-.courseInfo {
+.courseInfo,
+.courseSelected {
   position: relative;
   display: flex;
   flex-direction: column;
-  min-height: 80px;
-  max-height: 80px;
+  min-height: 120px;
+  max-height: 120px;
   width: 100%;
-  margin: 16px 0;
+  padding: 28px 0 16px 16px;
+  border-bottom: 1px solid #e8e9ef;
   box-sizing: border-box;
+  cursor: pointer;
 }
-/* .courseInfo::after {
-  position: absolute;
-  content: "";
-  bottom: -4px;
-  left: 50%;
-  transform: translateX(-50%);
-  height: 2px;
-  background: #f9f9f9;
-  width: 100%;
-} */
+
+.courseSelected {
+  background: rgba(4, 121, 168, 0.1);
+}
+
+.courseInfo:hover {
+  background: rgba(4, 121, 168, 0.06);
+}
 
 .number {
+  position: relative;
+  display: flex;
   font-size: 24px;
+  font-weight: 700;
+  color: #282728;
+  transition: all 0.1s linear;
 }
+
+.courseSelected .number {
+  padding-left: 16px;
+  transition: all 0.1s linear;
+}
+
+.number::before,
+.courseSelected .number::before {
+  position: absolute;
+  content: "";
+  top: 4px;
+  left: 0;
+  height: 22px;
+  background: #0479a8;
+  border-radius: 2px;
+  transition: all 0.1s linear;
+}
+.number::before {
+  width: 0;
+}
+.courseSelected .number::before {
+  width: 6px;
+}
+
+/* .numberSelected::before {
+  position: absolute;
+  content: "";
+  bottom: 0;
+  left: 0;
+  height: 100%;
+  width: 6px;
+  background: #0479a8;
+  border-radius: 2px;
+} */
 
 .name {
   margin: 8px 0;
@@ -182,6 +227,12 @@
 }
 
 .credits {
-  right: 4px;
+  right: 26px;
   position: absolute;
+}
+
+.creditNum {
+  font-size: 22px;
+  font-weight: 700;
+  color: #0479a8;
 }

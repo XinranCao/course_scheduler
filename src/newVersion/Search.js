@@ -1,17 +1,15 @@
 import React from 'react';
 import SideBar from './searchComp/SideBar';
 import CourseList from './searchComp/CourseList';
+import DetailInfo from './searchComp/DetailInfo';
 import './newVersion.css';
 
 class Search extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      courseSelected: -1
     };
-  }
-
-  componentDidMount() {
   }
 
   handleFilterCourses(keywordList, mode) {
@@ -20,6 +18,7 @@ class Search extends React.Component {
 
     if (!keywordList.length || !Object.values(allCourses).length) { 
       updateFilteredCourses(allCourses) 
+      this.setState({ courseSelected: -1 })
       return;
     }
 
@@ -61,17 +60,26 @@ class Search extends React.Component {
     })
 
     updateFilteredCourses(filteredCourses)
+    this.setState({ courseSelected: -1 })
+  }
+
+
+  handleSelectCourse(index) {
+    const { courseSelected } = this.state
+    const newIndex = courseSelected === index ? -1 : index
+    this.setState({ courseSelected: newIndex })
   }
 
   render() {
 
     const { filteredCourses } = this.props
-     
+    const { courseSelected } = this.state
+
     return <>
       <SideBar filterCourse={(keywordList, mode)=>this.handleFilterCourses(keywordList, mode)}/>
-      <CourseList filteredCourses={filteredCourses}/>
+      <CourseList filteredCourses={filteredCourses} courseSelected={courseSelected} selectCourse={(index)=>this.handleSelectCourse(index)} />
       
-      <div className='detailInfoSec'></div>
+      <DetailInfo />
     </>
   }
 }

@@ -14,9 +14,6 @@ class SideBar extends React.Component {
     };
   }
 
-  componentDidMount() {
-  }
-
   addKeyword() {
     const { keywordList, filterMode } = this.state
     const curr = this.keyword.current.value;
@@ -80,10 +77,14 @@ class SideBar extends React.Component {
                   <span className='settingText'>Current keywords</span>
                   <div className='keywordList'>
                     {
-                      keywordList.map((item,index)=>(
+                      keywordList.slice().reverse().map((item,index)=>(
                         <div className='currentKeyword' key={item}>
                           {item}
-                          <div className='removeBtn' onClick={ ()=>this.removeKeyword(index)} >{`\u2715`}</div>
+                          <div 
+                            className='removeBtn' 
+                            onClick={ ()=>this.removeKeyword(keywordList.length-index-1)} >
+                              {`\u2715`}
+                          </div>
                         </div>
                       ))
                     }
