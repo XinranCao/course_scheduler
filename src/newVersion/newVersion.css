@@ -2,6 +2,7 @@
   position: relative;
   display: flex;
   width: 100vw;
+  min-width: 1292px;
   height: 100vh;
   background: #f7f7f7;
   box-sizing: border-box;
@@ -68,8 +69,9 @@
   position: relative;
   display: flex;
   width: 100%;
-  height: calc(100% - 76px);
+  height: calc(100% - 60px);
   margin-top: 60px;
   background: #dadfe1;
   padding: 8px;
+  box-sizing: border-box;
 }

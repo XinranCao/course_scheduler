@@ -3,22 +3,29 @@
 .detailInfoSec {
   display: flex;
   flex-direction: column;
+  height: 100%;
   align-items: center;
   border-radius: 5px;
   background: #f7f7f7;
+  box-sizing: border-box;
 }
 
 .searchToolSec {
-  width: 280px;
+  min-width: 240px;
+  max-width: 260px;
+  width: calc(24vw);
 }
 
 .courseListSec {
-  width: 400px;
+  min-width: 330px;
+  max-width: 360px;
+  width: calc(26vw);
   margin: 0 8px;
 }
 
 .detailInfoSec {
-  width: calc(100% - 696px);
+  min-width: 700px;
+  width: calc(60vw - 12px);
 }
 
 .sectionTitle {
@@ -41,8 +48,8 @@
   display: flex;
   flex-direction: column;
   width: 100%;
+  height: calc(100% - 76px);
   margin-top: 16px;
-  /* padding: 0 16px; */
   box-sizing: border-box;
 }
 
@@ -64,6 +71,7 @@
 
 .chosenTags {
   margin-right: 0;
+  height: calc(100% - 260px);
 }
 
 #modeSelect,
@@ -97,7 +105,8 @@
   display: flex;
   align-content: flex-start;
   flex-wrap: wrap;
-  height: 416px;
+  margin-top: 8px;
+  height: 100%;
   overflow-y: scroll;
   overflow-x: hidden;
 }
@@ -161,10 +170,10 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  min-height: 120px;
-  max-height: 120px;
+  min-height: 126px;
+  max-height: 126px;
   width: 100%;
-  padding: 28px 0 16px 16px;
+  padding: 24px 0 16px 16px;
   border-bottom: 1px solid #e8e9ef;
   box-sizing: border-box;
   cursor: pointer;
@@ -213,12 +222,14 @@
 
 .courseInfo .name,
 .courseSelected .name {
-  margin: 8px 0;
+  margin: 8px 16px 8px 0;
   color: #494949;
+  line-height: 28px;
 }
 
 .courseInfo .credits,
 .courseSelected .credits {
+  margin-top: 1px;
   right: 26px;
   position: absolute;
 }
@@ -233,7 +244,7 @@
 .detailInfo {
   display: flex;
   flex-direction: column;
-  padding: 16px;
+  padding: 16px 0;
   width: 100%;
   height: calc(100% - 60px);
   overflow-y: scroll;
@@ -276,6 +287,7 @@
 
 .detailInfo .name {
   margin-top: 8px;
+  padding: 0 16px;
   font-size: 26px;
   font-weight: 700;
   color: #282728;
@@ -283,6 +295,7 @@
 
 .detailInfo .description {
   margin-top: 28px;
+  padding: 0 16px;
   font-size: 20px;
 }
 
@@ -293,9 +306,91 @@
   margin-top: 32px;
   font-size: 20px;
   font-style: italic;
+  padding: 0 16px;
 }
 
 .detailInfo .requisites {
   color: #c5050c;
   font-weight: 500;
+}
+
+.sectionInfo {
+  margin-top: 32px;
+}
+
+.sectionTable {
+  font-size: 18px;
+}
+
+.sectionTable .sectionTh {
+  font-weight: 600;
+  padding: 8px 0 8px 8px;
+  border-top: 1px solid #dadfe1;
+  border-bottom: 1px solid #dadfe1;
+}
+
+.sectionTable .sectionTd {
+  padding: 8px 4px 8px 8px;
+  vertical-align: top;
+  border-bottom: 1px solid #dadfe1;
+  line-height: 24px;
+}
+
+.sectionTable .lec {
+  background: rgba(100, 101, 105, 0.1);
+  font-weight: 500;
+}
+
+.sectionTable .fav {
+  vertical-align: middle;
+  border-right: 1px solid #dadfe1;
+  padding: 0;
+  cursor: pointer;
+}
+.sectionTable .fav:hover .favoriteBtn,
+.sectionTable .fav .favoriteBtn {
+  display: flex;
+  position: relative;
+  align-items: baseline;
+  justify-content: center;
+  height: 28px;
+  width: 28px;
+  font-size: 28px;
+  border-radius: 50%;
+  color: #c5050c;
+  /* border: 1px solid black; */
+  transition: 0.2s linear;
+  transform: translateX(24px);
+}
+
+.sectionTable .fav:hover .favoriteBtn {
+  transform: translateX(24px) rotateZ(180deg);
+  font-size: 40px;
+}
+
+/* .favoriteBtn::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-bottom: 4px solid #c5050c;
+  border-right: 4px solid #c5050c;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.favoriteBtn::after {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-top: 4px solid #c5050c;
+  border-left: 4px solid #c5050c;
+  position: absolute;
+  top: 9px;
+  left: 9px;
+} */
+
+.timeTd {
+  display: flex;
+  margin-bottom: 4px;
 }

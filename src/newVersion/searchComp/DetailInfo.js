@@ -35,13 +35,13 @@ class DetailInfo extends React.Component {
 
   getDay(day) {
     const dayMap = {
-      'monday': 'Mon.',
-      'tuesday': 'Tue.',
-      'wednesday': 'Wed.',
-      'thursday': 'Thu.',
-      'friday': 'Fri.',
-      'Saturday': 'Sat.',
-      'Sunday': 'Sun.'
+      'monday': 'Mon ',
+      'tuesday': 'Tue ',
+      'wednesday': 'Wed ',
+      'thursday': 'Thu ',
+      'friday': 'Fri ',
+      'Saturday': 'Sat ',
+      'Sunday': 'Sun '
     }
     return dayMap[day.toLowerCase()]
   }
@@ -66,62 +66,63 @@ class DetailInfo extends React.Component {
             {
               showSections
                 ? <div className='sectionInfo'>
-                  <table className="sectionTable" width="100%" border="0" cellSpacing="1" cellPadding="4">
-                  <tbody>
-                    <tr>
-                      <td width='20%' className='sectionTh'>Sections</td>
-                      <td width='25%' className='sectionTh'>Time</td>
-                      <td width='15%' className='sectionTh'>Instructor</td>
-                      <td width='30%' className='sectionTh'>Location</td>
-                      <td width='10%' className='sectionTh'></td>
+                  <table className="sectionTable" cellSpacing='0' width="100%">
+                    <tbody>
+                      <tr>
 
-                      {/* <td className='sectionTh'>Sections</td>
-                      <td className='sectionTh'>Time</td>
-                      <td className='sectionTh'>Instructor</td>
-                      <td className='sectionTh'>Location</td>
-                      <td className='sectionTh'></td> */}
-                    </tr>
-                    {
-                      Object.entries(courseInfo.sections).map(([section,sectionInfo]) => {
-                        return <React.Fragment key={section}>
-                          <tr>
-                            <td className='sectionTd'>{section.replace("_", " ")}</td>
-                            <td className='sectionTd timeTd'>
-                              {
-                                Object.entries(sectionInfo.time).map(([day,time]) => (
-                                  <span key={day+time}>{this.getDay(day)}{time}</span>
+                        <td width='75px' className='sectionTh'>Favorite</td>
+                        <td width='85px' className='sectionTh'>Sections</td>
+                        <td width='220px' className='sectionTh'>Time</td>
+                        <td width='135px' className='sectionTh'>Instructor</td>
+                        <td width='140px' className='sectionTh'>Location</td>
+
+                        {/* <td className='sectionTh'>Sections</td>
+                        <td className='sectionTh'>Time</td>
+                        <td className='sectionTh'>Instructor</td>
+                        <td className='sectionTh'>Location</td>
+                        <td className='sectionTh'></td> */}
+                      </tr>
+                      {
+                        Object.entries(courseInfo.sections).map(([section,sectionInfo]) => {
+                          return <React.Fragment key={section}>
+                            <tr>
+
+                              <td className='sectionTd fav lec'><div className='favoriteBtn'>+</div></td>
+                              <td className='sectionTd lec'>{section.replace("_", " ")}</td>
+                              <td className='sectionTd lec'>
+                                {
+                                  Object.entries(sectionInfo.time).map(([day,time]) => (
+                                    <span className='timeTd' key={day+time}>{this.getDay(day)}{time}</span>
+                                  ))
+                                }
+                              </td>
+                              <td className='sectionTd lec'>{sectionInfo.instructor}</td>
+                              <td className='sectionTd lec'>{sectionInfo.location}</td>
+                            </tr>
+                            {
+                              Object.keys(sectionInfo.subsections).length === 0
+                                ? null
+                                : Object.entries(sectionInfo.subsections).map(([subsection,subsectionInfo]) => (
+                                  <tr key={subsection}>
+                                    <td className='sectionTd fav'><div className='favoriteBtn'>+</div></td>
+                                    <td className='sectionTd'>{subsection.replace("_", " ")}</td>
+                                    <td className='sectionTd'>
+                                      {
+                                        Object.entries(subsectionInfo.time).map(([day,time]) => (
+                                            <span className='timeTd' key={day+time}>{this.getDay(day)}{time}</span>
+                                        ))
+                                      }
+                                    </td>
+                                    <td className='sectionTd'></td>
+                                    <td className='sectionTd'>{subsectionInfo.location}</td>
+                                  </tr>
                                 ))
-                              }
-                            </td>
-                            <td className='sectionTd'>{sectionInfo.instructor}</td>
-                            <td className='sectionTd'>{sectionInfo.location}</td>
-                            <td className='sectionTd'><div>a</div></td>
-                          </tr>
-                          {
-                            Object.keys(sectionInfo.subsections).length === 0
-                              ? null
-                              : Object.entries(sectionInfo.subsections).map(([subsection,subsectionInfo]) => (
-                                <tr key={subsection}>
-                                  <td className='sectionTd'>{subsection.replace("_", " ")}</td>
-                                  <td className='sectionTd' timeTd>
-                                    {
-                                      Object.entries(subsectionInfo.time).map(([day,time]) => (
-                                          <span key={day+time}>{this.getDay(day)}{time}</span>
-                                      ))
-                                    }
-                                  </td>
-                                  <td className='sectionTd'></td>
-                                  <td className='sectionTd'>{subsectionInfo.location}</td>
-                                  <td className='sectionTd'><div>a</div></td>
-                                </tr>
-                              ))
-                          }
-                        </React.Fragment>
-                      })
-                    }
+                            }
+                          </React.Fragment>
+                        })
+                      }
                     </tbody>
                   </table>
-
                 </div>
                 : <>
                     <div className='description'>{courseInfo.description}</div>

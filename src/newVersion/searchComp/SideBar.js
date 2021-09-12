@@ -71,27 +71,29 @@ class SideBar extends React.Component {
               <input id='keywordInput' type='text' placeholder="Enter keyword" ref={this.keyword} autoComplete="off"/>
             </form>
           </div>
-          {
-            keywordList.length !== 0 
-              ? <div className='chosenTags'>
-                  <span className='settingText'>Current keywords</span>
-                  <div className='keywordList'>
-                    {
-                      keywordList.slice().reverse().map((item,index)=>(
-                        <div className='currentKeyword' key={item}>
-                          {item}
-                          <div 
-                            className='removeBtn' 
-                            onClick={ ()=>this.removeKeyword(keywordList.length-index-1)} >
-                              {`\u2715`}
+          <div className='chosenTags'>
+            {
+              keywordList.length !== 0 
+                ? <>
+                    <span className='settingText'>Current keywords</span>
+                    <div className='keywordList'>
+                      {
+                        keywordList.slice().reverse().map((item,index)=>(
+                          <div className='currentKeyword' key={item}>
+                            {item}
+                            <div 
+                              className='removeBtn' 
+                              onClick={ ()=>this.removeKeyword(keywordList.length-index-1)} >
+                                {`\u2715`}
+                            </div>
                           </div>
-                        </div>
-                      ))
-                    }
-                  </div>
-              </div>
-              : null
-          }
+                        ))
+                      }
+                    </div>
+                </>
+                : null
+            }
+          </div>
         </div>
       </div>
   }
