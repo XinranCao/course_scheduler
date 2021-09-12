@@ -13,15 +13,15 @@
 }
 
 .courseListSec {
-  width: 460px;
+  width: 400px;
   margin: 0 8px;
 }
 
 .detailInfoSec {
-  width: calc(100% - 756px);
+  width: calc(100% - 696px);
 }
 
-.searchTitle {
+.sectionTitle {
   display: flex;
   align-items: center;
   font-weight: 700;
@@ -178,7 +178,8 @@
   background: rgba(4, 121, 168, 0.06);
 }
 
-.number {
+.courseInfo .number,
+.courseSelected .number {
   position: relative;
   display: flex;
   font-size: 24px;
@@ -192,7 +193,7 @@
   transition: all 0.1s linear;
 }
 
-.number::before,
+.courseInfo .number::before,
 .courseSelected .number::before {
   position: absolute;
   content: "";
@@ -203,36 +204,98 @@
   border-radius: 2px;
   transition: all 0.1s linear;
 }
-.number::before {
+.courseInfo .number::before {
   width: 0;
 }
 .courseSelected .number::before {
   width: 6px;
 }
 
-/* .numberSelected::before {
-  position: absolute;
-  content: "";
-  bottom: 0;
-  left: 0;
-  height: 100%;
-  width: 6px;
-  background: #0479a8;
-  border-radius: 2px;
-} */
-
-.name {
+.courseInfo .name,
+.courseSelected .name {
   margin: 8px 0;
   color: #494949;
 }
 
-.credits {
+.courseInfo .credits,
+.courseSelected .credits {
   right: 26px;
   position: absolute;
 }
 
-.creditNum {
+.courseInfo .creditNum,
+.courseSelected .creditNum {
   font-size: 22px;
   font-weight: 700;
   color: #0479a8;
+}
+
+.detailInfo {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  width: 100%;
+  height: calc(100% - 60px);
+  overflow-y: scroll;
+  box-sizing: border-box;
+}
+
+.detailInfo .secShowBtn,
+.detailInfo .secHideBtn {
+  height: 38px;
+  width: 160px;
+  text-align: center;
+  padding: 6px 0 8px;
+  margin-top: 16px;
+  margin-left: 2px;
+  border-radius: 5px;
+  user-select: none;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 400;
+  background-color: #0479a8;
+  box-shadow: 0 3px 1px -2px rgb(0 0 0 / 20%), 0 2px 2px 0 rgb(0 0 0 / 14%),
+    0 1px 5px 0 rgb(0 0 0 / 12%);
+  transition: box-shadow 200ms linear;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.detailInfo .secHideBtn {
+  color: #0479a8;
+  background-color: rgba(4, 121, 168, 0.04);
+  border: 1px solid #0479a8;
+}
+
+.detailInfo .secShowBtn:hover,
+.detailInfo .secHideBtn:hover {
+  box-shadow: 0 5px 5px -3px rgb(0 0 0 / 20%), 0 8px 10px 1px rgb(0 0 0 / 14%),
+    0 3px 14px 2px rgb(0 0 0 / 12%);
+  transition: box-shadow 200ms linear;
+}
+
+.detailInfo .name {
+  margin-top: 8px;
+  font-size: 26px;
+  font-weight: 700;
+  color: #282728;
+}
+
+.detailInfo .description {
+  margin-top: 28px;
+  font-size: 20px;
+}
+
+.detailInfo .keywords,
+.detailInfo .requisites {
+  display: flex;
+  font-weight: 300;
+  margin-top: 32px;
+  font-size: 20px;
+  font-style: italic;
+}
+
+.detailInfo .requisites {
+  color: #c5050c;
+  font-weight: 500;
 }

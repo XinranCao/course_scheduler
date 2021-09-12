@@ -12,7 +12,7 @@ class CourseList extends React.Component {
     const resultNum = Object.keys(filteredCourses).length
      
     return <div className='courseListSec'>
-        <div className='searchTitle'> {`${resultNum} result${resultNum>1?'s':''}`}</div>
+        <div className='sectionTitle'> {`${resultNum} result${resultNum>1?'s':''}`}</div>
         <div className='courseList'>
           {
             Object.values(filteredCourses).map((course, index) => (

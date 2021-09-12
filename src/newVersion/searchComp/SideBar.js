@@ -44,7 +44,7 @@ class SideBar extends React.Component {
     const { keywordList, alertMsg } = this.state
      
     return <div className='searchToolSec'>
-        <div className='searchTitle'>Search for courses</div>
+        <div className='sectionTitle'>Search for courses</div>
         <div className='searchSetting'>
           <div className='tagSetting'>
             <span className='settingText'>Search mode</span>

@@ -70,16 +70,32 @@ class Search extends React.Component {
     this.setState({ courseSelected: newIndex })
   }
 
+  handleFindRequisite(requisiteList) {
+    const { allCourses } = this.props
+    console.log('list',requisiteList)
+    const classList = []
+    requisiteList.map( requisite => {
+      requisite.map( item => {
+        classList.push(allCourses[item].number )
+      })
+    })
+    return classList
+  }
+
   render() {
 
     const { filteredCourses } = this.props
     const { courseSelected } = this.state
 
     return <>
-      <SideBar filterCourse={(keywordList, mode)=>this.handleFilterCourses(keywordList, mode)}/>
-      <CourseList filteredCourses={filteredCourses} courseSelected={courseSelected} selectCourse={(index)=>this.handleSelectCourse(index)} />
-      
-      <DetailInfo />
+      <SideBar filterCourse={ (keywordList, mode) => this.handleFilterCourses(keywordList, mode) } />
+      <CourseList 
+        filteredCourses={filteredCourses} 
+        courseSelected={courseSelected} 
+        selectCourse={ (index) => this.handleSelectCourse(index) } />
+      <DetailInfo 
+        courseInfo={ courseSelected < 0 ? {} : Object.values(filteredCourses)[courseSelected] }
+        findRequisite={ (requisiteList)=>this.handleFindRequisite(requisiteList) } />
     </>
   }
 }
