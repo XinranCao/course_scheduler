@@ -1,28 +1,26 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import SideBar from './searchComp/SideBar';
 import CourseList from './searchComp/CourseList';
 import DetailInfo from './searchComp/DetailInfo';
 import './newVersion.css';
 
-class Search extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      courseSelected: -1
-    };
-  }
+function Search (props) {
 
-  handleFilterCourses(keywordList, mode) {
-    const { allCourses, updateFilteredCourses } = this.props
+  const [courseSelected, setCourseSelected] = useState(-1)
+
+
+  const { favList, filteredCourses, modifyFavList, allCourses, updateFilteredCourses } = props
+
+  const handleFilterCourses = (keywordList, mode) => {
     let filteredCourses = []
 
     if (!keywordList.length || !Object.values(allCourses).length) { 
       updateFilteredCourses(allCourses) 
-      this.setState({ courseSelected: -1 })
+      setCourseSelected(-1)
       return;
     }
 
-    Object.values(allCourses).map( (course, index) => {
+    Object.values(allCourses).map( course => {
       let courseKeywords = []
       course.keywords.map(item=>courseKeywords.push(item))
       courseKeywords.push(course.name, course.number)
@@ -60,19 +58,16 @@ class Search extends React.Component {
     })
 
     updateFilteredCourses(filteredCourses)
-    this.setState({ courseSelected: -1 })
+    setCourseSelected(-1)
   }
 
 
-  handleSelectCourse(index) {
-    const { courseSelected } = this.state
+  const handleSelectCourse = (index) => {
     const newIndex = courseSelected === index ? -1 : index
-    this.setState({ courseSelected: newIndex })
+    setCourseSelected(newIndex)
   }
 
-  handleFindRequisite(requisiteList) {
-    const { allCourses } = this.props
-    console.log('list',requisiteList)
+  const handleFindRequisite = (requisiteList) => {
     const classList = []
     requisiteList.map( requisite => {
       requisite.map( item => {
@@ -82,22 +77,20 @@ class Search extends React.Component {
     return classList
   }
 
-  render() {
 
-    const { filteredCourses } = this.props
-    const { courseSelected } = this.state
 
-    return <>
-      <SideBar filterCourse={ (keywordList, mode) => this.handleFilterCourses(keywordList, mode) } />
-      <CourseList 
-        filteredCourses={filteredCourses} 
-        courseSelected={courseSelected} 
-        selectCourse={ (index) => this.handleSelectCourse(index) } />
-      <DetailInfo 
-        courseInfo={ courseSelected < 0 ? {} : Object.values(filteredCourses)[courseSelected] }
-        findRequisite={ (requisiteList)=>this.handleFindRequisite(requisiteList) } />
-    </>
-  }
+  return <>
+    <SideBar filterCourse={ (keywordList, mode) => handleFilterCourses(keywordList, mode) } />
+    <CourseList 
+      filteredCourses={filteredCourses} 
+      courseSelected={courseSelected} 
+      selectCourse={ index => handleSelectCourse(index) } />
+    <DetailInfo 
+      favList = {favList}
+      modifyFavList = {modifyFavList}
+      courseInfo={ courseSelected < 0 ? {} : Object.values(filteredCourses)[courseSelected] }
+      findRequisite={ requisiteList => handleFindRequisite(requisiteList) } />
+  </>
 }
 
 export default Search;
