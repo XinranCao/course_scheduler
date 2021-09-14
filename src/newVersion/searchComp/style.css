@@ -339,6 +339,7 @@
   border-bottom: solid 1px #c5050c;
   -webkit-transform: rotate(-45deg);
   transform: rotate(-45deg);
+  cursor: pointer;
 }
 .detailInfo .favHeart::before,
 .detailInfo .favHeart_checked::before {

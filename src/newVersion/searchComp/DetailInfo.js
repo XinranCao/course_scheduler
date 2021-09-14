@@ -66,7 +66,9 @@ function DetailInfo (props) {
           <div className='titleArea'>
             <div className='name'>
               {courseInfo.name}
-              <div className={ courseAdded ? 'favHeart_checked' : 'favHeart' }/>
+              <div 
+                className={ courseAdded ? 'favHeart_checked' : 'favHeart' }
+                onClick={ () => modifyFavList( courseAdded ? 'remove' : 'add', 'all', courseInfo, null, null) }/>
             </div>
             <div className='btns'>
               <div 

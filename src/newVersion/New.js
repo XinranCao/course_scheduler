@@ -128,18 +128,24 @@ class New extends React.Component {
             }
         </div>
 
-        <div className='mainContent'>
-            { 
-                navKey === 'Search' 
-                    ? <Search 
-                        favList = {favList}
-                        allCourses ={allCourses}
-                        filteredCourses={filteredCourses} 
-                        updateFilteredCourses={ (filteredCourses) => this.setState({ filteredCourses }) }
-                        modifyFavList={ (operation, key, course, sectionNum, subSectionNum) => this.handleModifyFavList(operation, key, course, sectionNum, subSectionNum)} />  
-                    : <Scheduler favList={favList}/> 
-            }
-        </div>
+        { 
+          <div className='mainContent' style={{display:navKey === 'Search' ? 'flex' : 'none'}}>
+            <Search 
+              favList = {favList}
+              allCourses ={allCourses}
+              filteredCourses={filteredCourses} 
+              updateFilteredCourses={ (filteredCourses) => this.setState({ filteredCourses }) }
+              modifyFavList={ (operation, key, course, sectionNum, subSectionNum) => this.handleModifyFavList(operation, key, course, sectionNum, subSectionNum)} />  
+          </div>
+        }
+
+{ 
+          <div className='mainContent' style={{display:navKey === 'Schedule' ? 'flex' : 'none'}}>
+            <Scheduler 
+              favList={favList}/> 
+          </div>
+        }
+
     </div>
   }
 }
