@@ -285,12 +285,97 @@
   transition: box-shadow 200ms linear;
 }
 
+.detailInfo .removeAll,
+.detailInfo .addAll {
+  height: 38px;
+  width: 240px;
+  text-align: center;
+  padding: 6px 0 8px;
+  margin-top: 16px;
+  margin-left: 16px;
+  border-radius: 5px;
+  user-select: none;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 400;
+  background-color: #0479a8;
+  box-shadow: 0 3px 1px -2px rgb(0 0 0 / 20%), 0 2px 2px 0 rgb(0 0 0 / 14%),
+    0 1px 5px 0 rgb(0 0 0 / 12%);
+  transition: box-shadow 200ms linear;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.detailInfo .removeAll {
+  color: #c5050c;
+  background-color: rgba(197, 5, 12, 0.04);
+  border: 1px solid #c5050c;
+}
+
+.detailInfo .removeAll:hover,
+.detailInfo .addAll:hover {
+  box-shadow: 0 5px 5px -3px rgb(0 0 0 / 20%), 0 8px 10px 1px rgb(0 0 0 / 14%),
+    0 3px 14px 2px rgb(0 0 0 / 12%);
+  transition: box-shadow 200ms linear;
+}
+
 .detailInfo .name {
+  display: flex;
   margin-top: 8px;
   padding: 0 16px;
   font-size: 26px;
   font-weight: 700;
   color: #282728;
+}
+
+.detailInfo .favHeart,
+.detailInfo .favHeart_checked {
+  position: relative;
+  margin-top: 8px;
+  margin-left: 24px;
+  width: 18px;
+  height: 18px;
+  border-left: solid 1px #c5050c;
+  border-bottom: solid 1px #c5050c;
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+.detailInfo .favHeart::before,
+.detailInfo .favHeart_checked::before {
+  content: "";
+  position: absolute;
+  top: -9px;
+  left: -1px;
+  width: 15px;
+  height: 10px;
+  border-radius: 10px 10px 0 0;
+  border-top: solid 1px #c5050c;
+  border-left: solid 1px #c5050c;
+  border-right: solid 1px #c5050c;
+}
+.detailInfo .favHeart::after,
+.detailInfo .favHeart_checked::after {
+  content: "";
+  position: absolute;
+  top: 1px;
+  left: 17px;
+  width: 9px;
+  height: 16px;
+  border-radius: 0 10px 10px 0;
+  border-top: solid 1px #c5050c;
+  border-right: solid 1px #c5050c;
+  border-bottom: solid 1px #c5050c;
+}
+
+.detailInfo .favHeart_checked,
+.detailInfo .favHeart_checked::before,
+.detailInfo .favHeart_checked::after {
+  background: #c5050c;
+}
+
+.detailInfo .btns {
+  display: flex;
+  padding: 0 16px;
 }
 
 .detailInfo .description {
@@ -358,7 +443,6 @@
   width: 30px;
   box-sizing: border-box;
   transform: translateX(24px);
-  transition: background 0.2s linear, content 0.2s linear;
 }
 
 .sectionTable .fav .favoriteBtn {

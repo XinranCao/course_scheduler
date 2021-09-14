@@ -63,17 +63,22 @@ function DetailInfo (props) {
     {
       Object.keys(courseInfo).length 
       ? <div className='detailInfo'>
-          <div className='name'>
-            {courseInfo.name}
-            <div 
-              className={ showSections ? 'secHideBtn' : 'secShowBtn'} 
-              onClick={ () => setShowSections(!showSections) }>
-                {showSections ? 'Hide sections' : 'Show sections'}
+          <div className='titleArea'>
+            <div className='name'>
+              {courseInfo.name}
+              <div className={ courseAdded ? 'favHeart_checked' : 'favHeart' }/>
             </div>
-            <div 
-              className={ courseAdded ? 'removeAll' : 'addAll' }  
-              onClick={ () => modifyFavList( courseAdded ? 'remove' : 'add', 'all', courseInfo, null, null) }>
-                {courseAdded ? 'Remove from favorite' : 'Add all sections to favorite'}
+            <div className='btns'>
+              <div 
+                className={ showSections ? 'secHideBtn' : 'secShowBtn'} 
+                onClick={ () => setShowSections(!showSections) }>
+                  {showSections ? 'Hide sections' : 'Show sections'}
+              </div>
+              <div 
+                className={ courseAdded ? 'removeAll' : 'addAll' }  
+                onClick={ () => modifyFavList( courseAdded ? 'remove' : 'add', 'all', courseInfo, null, null) }>
+                  {courseAdded ? 'Remove from favorite' : 'Add all sections to favorite'}
+              </div>
             </div>
           </div>
           {
