@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import './style.css';
 
 function CourseList(props) {
-
 
   const { filteredCourses, courseSelected, selectCourse } = props
   const resultNum = Object.keys(filteredCourses).length

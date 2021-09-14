@@ -1,16 +1,16 @@
 import React from 'react'
-import Old from './oldVersion/Old'
+// import Old from './oldVersion/Old'
 import New from './newVersion/New'
-import old_screenshot from './img/old_screenshot.png'
-import new_screenshot from './img/new_screenshot.png'
+// import old_screenshot from './img/old_screenshot.png'
+// import new_screenshot from './img/new_screenshot.png'
 import './App.css'
 
 class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            versionSwitch: -1,
-            versionPreview: 0
+            // versionSwitch: -1,
+            // versionPreview: 0
         };
     }
 
@@ -18,40 +18,40 @@ class App extends React.Component {
 
     }
 
-    clickBoxContent(index) {
-        const boxes = document.getElementsByClassName('boxContent')
-        const { versionPreview } = this.state
+    // clickBoxContent(index) {
+    //     const boxes = document.getElementsByClassName('boxContent')
+    //     const { versionPreview } = this.state
 
-        if ( versionPreview !== index) {
-            for (let i = 0; i < boxes.length; i++) {
-                i === index
-                ? boxes[i].classList.add('view')
-                : boxes[i].classList.remove('view')
-            }
-            this.setState({ versionPreview: index })
-        }
-    }
+    //     if ( versionPreview !== index) {
+    //         for (let i = 0; i < boxes.length; i++) {
+    //             i === index
+    //             ? boxes[i].classList.add('view')
+    //             : boxes[i].classList.remove('view')
+    //         }
+    //         this.setState({ versionPreview: index })
+    //     }
+    // }
 
     render() {
 
-        const { versionSwitch, versionPreview } = this.state
+        // const { versionSwitch, versionPreview } = this.state
         let showVersion = null
-        if (versionSwitch === 0) {
-            showVersion = < Old />
-        } else if (versionSwitch === 1) {
+        // if (versionSwitch === 0) {
+        //     showVersion = < Old />
+        // } else if (versionSwitch === 1) {
             showVersion = < New />
-        }
+        // }
 
-        const oldInfo = <>
-            - CS639 class project, finished in Fall 2019. <br /><br />
-            - I had no JS+CSS+HTML background before I took this class.
-            The final product had a rough structure design, a confusing human-computer interaction design and a flawed Algorithm logic design.<br /><br />
-            - This project was built with React and Bootstrap components. Basic UI design and prototyping was finished using Adobe XD <br /><br /> </>
-        const newInfo = ''
+        // const oldInfo = <>
+        //     - CS639 class project, finished in Fall 2019. <br /><br />
+        //     - I had no JS+CSS+HTML background before I took this class.
+        //     The final product had a rough structure design, a confusing human-computer interaction design and a flawed Algorithm logic design.<br /><br />
+        //     - This project was built with React and Bootstrap components. Basic UI design and prototyping was finished using Adobe XD <br /><br /> </>
+        // const newInfo = ''
 
         return (
             <>
-                <div className='mainPage' style={{ display: versionSwitch === -1 ? '' : 'none' }}>
+                {/* <div className='mainPage' style={{ display: versionSwitch === -1 ? '' : 'none' }}>
                     <div className='content'>
                         <div className='versionBox'>
                             {
@@ -92,7 +92,7 @@ class App extends React.Component {
                             }
                         </div>
                     </div>
-                </div>
+                </div> */}
 
                 {showVersion}
 

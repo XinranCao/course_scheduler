@@ -10,8 +10,8 @@ function DetailInfo (props) {
     setShowSections(false)
   },[props.courseInfo])
 
-  console.log('courseInfo', courseInfo)
-  console.log('favList',favList)
+  // console.log('courseInfo', courseInfo)
+  // console.log('favList',favList)
 
   const getRequisiteDiv = (requisites) => {
     const requisiteList = findRequisite(requisites)

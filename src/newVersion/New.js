@@ -18,7 +18,7 @@ class New extends React.Component {
   }
 
   componentDidMount() {
-    console.log('===',ClassInfo)
+    // console.log('===',ClassInfo)
     this.setState({ 
       allCourses: ClassInfo, 
       filteredCourses: ClassInfo, 
@@ -111,7 +111,7 @@ class New extends React.Component {
   }
 
   render() {
-    const { navKey, allCourses, filteredCourses, favList, subjects, schedule } = this.state
+    const { navKey, allCourses, filteredCourses, favList } = this.state
     return <div className='page'>
         <div className='navBar'>
           <img src={require('../img/logo3.svg')} height='75%' alt='logo'/>
@@ -140,7 +140,6 @@ class New extends React.Component {
                     : <Scheduler favList={favList}/> 
             }
         </div>
-
     </div>
   }
 }

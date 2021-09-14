@@ -1,24 +1,11 @@
 import React from 'react';
 import './newVersion.css';
 
-class Scheduler extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-        navKey: 'search'
-    };
-  }
+function Scheduler (props) {
 
-  componentDidMount() {
-  }
+  return <>
 
-
-  render() {
-     
-    return <>
-
-    </>
-  }
+  </>
 }
 
 export default Scheduler;

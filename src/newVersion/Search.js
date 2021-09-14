@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import SideBar from './searchComp/SideBar';
 import CourseList from './searchComp/CourseList';
 import DetailInfo from './searchComp/DetailInfo';
@@ -7,7 +7,6 @@ import './newVersion.css';
 function Search (props) {
 
   const [courseSelected, setCourseSelected] = useState(-1)
-
 
   const { favList, filteredCourses, modifyFavList, allCourses, updateFilteredCourses } = props
 
@@ -55,12 +54,11 @@ function Search (props) {
           if (match) { break; } // because filter mode is "union", no need to check other keywords
         }
       }
+      return null
     })
-
     updateFilteredCourses(filteredCourses)
     setCourseSelected(-1)
   }
-
 
   const handleSelectCourse = (index) => {
     const newIndex = courseSelected === index ? -1 : index
@@ -71,14 +69,12 @@ function Search (props) {
     const classList = []
     requisiteList.map( requisite => {
       requisite.map( item => {
-        classList.push(allCourses[item].number )
+        classList.push(allCourses[item].number ); return null
       })
+      return null
     })
     return classList
   }
-
-
-
   return <>
     <SideBar filterCourse={ (keywordList, mode) => handleFilterCourses(keywordList, mode) } />
     <CourseList 

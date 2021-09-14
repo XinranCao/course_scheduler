@@ -1,47 +1,39 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import './style.css';
 
-class SideBar extends React.Component {
-  constructor(props) {
-    super(props);
-    this.mode = React.createRef();
-    this.keyword = React.createRef();
-    this.state = {
-      filterMode: 'intersection',
-      keywordList: [],
-      alertMsg: '',
-      alertShow: false,
-    };
-  }
+function SideBar (props) {
 
-  addKeyword() {
-    const { keywordList, filterMode } = this.state
-    const curr = this.keyword.current.value;
+  const [filterMode, setFilterMode] = useState('intersection')
+  const [keywordList, setKeywordList] = useState([])
+  const[alertMsg, setAlertMsg] = useState('')
+  const mode = useRef(null);
+  const keyword = useRef(null);
+  let myFormRef = useRef(null)
+
+  const addKeyword = () => {
+    const curr = keyword.current.value;
+    let newMsg = ''
 
     if (curr.match(/^\s+$/) || curr.length === 0 ) {
-        this.setState({ alertMsg: 'Please enter a keyword!' })
+      newMsg = 'Please enter a keyword!'
     } else if (keywordList.includes(curr)) {
-        this.setState({ alertMsg: 'Keyword already added!' })
+      newMsg = 'Keyword already added!'
     } else if (curr.length > 15) {
-        this.setState({ alertMsg: 'Please enter less than 16 characters!' })
+      newMsg = 'Please enter less than 16 characters!'
     } else {
       keywordList.push(curr);
-      this.setState({ keywordList, alertMsg: '' });
-      this.myFormRef.reset(); 
-      this.props.filterCourse(keywordList, filterMode)
+      setKeywordList(keywordList)
+      myFormRef.reset(); 
+      props.filterCourse(keywordList, filterMode)
     }
+    setAlertMsg(newMsg)
   }
 
-  removeKeyword(index) {
-    const { keywordList, filterMode } = this.state
+  const removeKeyword = (index) => {
     keywordList.splice(index, 1);
-    this.setState({ keywordList })
-    this.props.filterCourse(keywordList, filterMode)
+    setKeywordList(keywordList)
+    props.filterCourse(keywordList, filterMode)
   }
-
-  render() {
-
-    const { keywordList, alertMsg } = this.state
      
     return <div className='searchToolSec'>
         <div className='sectionTitle'>Search for courses</div>
@@ -50,10 +42,10 @@ class SideBar extends React.Component {
             <span className='settingText'>Search mode</span>
               <select 
                 id='modeSelect' 
-                ref={this.mode} 
+                ref={mode} 
                 onChange={ () => {
-                  this.setState({ filterMode: this.mode.current.value });
-                  this.props.filterCourse(keywordList, this.mode.current.value)
+                  setFilterMode(mode.current.value);
+                  props.filterCourse(keywordList, mode.current.value)
                 }}>
                 <option key="intersection" value='intersection'>Intersection of tags</option>
                 <option key="union" value='union'>Union of tags</option>
@@ -64,11 +56,11 @@ class SideBar extends React.Component {
             <span 
                 className='alert' 
                 style={{ visibility: alertMsg.length ? "visible" : 'hidden' }} 
-                onClick={ () => this.setState({ alertMsg: '' }) } >
+                onClick={ () => setAlertMsg('') } >
                     {alertMsg}
             </span>
-            <form onSubmit={(e) => { e.preventDefault(); this.addKeyword() }} ref={(ele) => this.myFormRef = ele}>
-              <input id='keywordInput' type='text' placeholder="Enter keyword" ref={this.keyword} autoComplete="off"/>
+            <form onSubmit={(e) => { e.preventDefault(); addKeyword() }} ref={(ele) => myFormRef = ele}>
+              <input id='keywordInput' type='text' placeholder="Enter keyword" ref={keyword} autoComplete="off"/>
             </form>
           </div>
           <div className='chosenTags'>
@@ -83,7 +75,7 @@ class SideBar extends React.Component {
                             {item}
                             <div 
                               className='removeBtn' 
-                              onClick={ ()=>this.removeKeyword(keywordList.length-index-1)} >
+                              onClick={ ()=>removeKeyword(keywordList.length-index-1)} >
                                 {`\u2715`}
                             </div>
                           </div>
@@ -96,7 +88,6 @@ class SideBar extends React.Component {
           </div>
         </div>
       </div>
-  }
 }
 
 export default SideBar;
