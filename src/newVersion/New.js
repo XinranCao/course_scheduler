@@ -129,7 +129,7 @@ class New extends React.Component {
         </div>
 
         { 
-          <div className='mainContent' style={{display:navKey === 'Search' ? 'flex' : 'none'}}>
+          <div className='mainContent' style={{display: navKey === 'Search' ? 'flex' : 'none'}}>
             <Search 
               favList = {favList}
               allCourses ={allCourses}
@@ -140,7 +140,7 @@ class New extends React.Component {
         }
 
 { 
-          <div className='mainContent' style={{display:navKey === 'Schedule' ? 'flex' : 'none'}}>
+          <div className='mainContent' style={{display: navKey === 'Schedule' ? 'flex' : 'none'}}>
             <Scheduler 
               favList={favList}/> 
           </div>

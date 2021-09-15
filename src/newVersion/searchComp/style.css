@@ -128,8 +128,6 @@
   color: #0479a8;
   border-radius: 5px;
   border-color: rgba(0, 0, 0, 0.12);
-  box-shadow: 0 0 0 0 rgb(0 0 0 / 20%), 0 0 0 0 rgb(0 0 0 / 14%),
-    0 0 0 0 rgb(0 0 0 / 12%);
   user-select: text;
   cursor: pointer;
 }
@@ -247,7 +245,6 @@
   padding: 16px 0;
   width: 100%;
   height: calc(100% - 60px);
-  overflow-y: scroll;
   box-sizing: border-box;
 }
 
@@ -406,6 +403,20 @@
 
 .sectionTable {
   font-size: 18px;
+}
+
+.sectionTable tbody {
+  height: 580px !important;
+  overflow: auto;
+  display: block;
+}
+
+#sectionThead {
+  z-index: 100;
+  background: white;
+  position: sticky;
+  top: -4px;
+  /* box-shadow: 0px 6px 12px -8px #646569; */
 }
 
 .sectionTable .sectionTh {

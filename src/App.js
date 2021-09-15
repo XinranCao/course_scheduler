@@ -37,7 +37,7 @@ class App extends React.Component {
         // const { versionSwitch, versionPreview } = this.state
         let showVersion = null
         // if (versionSwitch === 0) {
-        //     showVersion = < Old />
+            // showVersion = < Old />
         // } else if (versionSwitch === 1) {
             showVersion = < New />
         // }

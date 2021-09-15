@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from "react";
 import './style.css';
 
 function DetailInfo (props) {
@@ -9,9 +9,15 @@ function DetailInfo (props) {
   useEffect(()=>{
     setShowSections(false)
   },[props.courseInfo])
-
-  // console.log('courseInfo', courseInfo)
-  // console.log('favList',favList)
+  
+  const tableScoll = (e) => {
+    const thead = document.getElementById('sectionThead')
+    if (e.target.scrollTop > 10) {
+      thead.style.boxShadow = '0px 6px 12px -8px #646569'
+    } else {
+      thead.style.boxShadow = 'none'
+    }
+  }
 
   const getRequisiteDiv = (requisites) => {
     const requisiteList = findRequisite(requisites)
@@ -87,8 +93,8 @@ function DetailInfo (props) {
             showSections
               ? <div className='sectionInfo'>
                 <table className="sectionTable" cellSpacing='0' width="100%">
-                  <tbody>
-                    <tr>
+                  <tbody onScroll={tableScoll}>
+                    <tr id='sectionThead'>
                       <td width='75px' className='sectionTh'>Favorite</td>
                       <td width='85px' className='sectionTh'>Sections</td>
                       <td width='220px' className='sectionTh'>Time</td>
