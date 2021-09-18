@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import './style.css';
+import '../newVersion.css';
 
 function SideBar (props) {
 

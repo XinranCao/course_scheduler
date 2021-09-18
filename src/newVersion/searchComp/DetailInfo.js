@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import './style.css';
+import '../newVersion.css';
 
 function DetailInfo (props) {
 
@@ -102,8 +102,8 @@ function DetailInfo (props) {
                       <td width='140px' className='sectionTh'>Location</td>
                     </tr>
                     {
-                      Object.entries(courseInfo.sections).map(([section,sectionInfo]) => {
-                        return <React.Fragment key={section}>
+                      Object.entries(courseInfo.sections).map(([section,sectionInfo]) => (
+                        <React.Fragment key={section}>
                           <tr>
                             {
                               courseAdded && courseAdded.sections[section]
@@ -188,7 +188,7 @@ function DetailInfo (props) {
                               ))
                           }
                         </React.Fragment>
-                      })
+                      ))
                     }
                   </tbody>
                 </table>

@@ -139,10 +139,11 @@ class New extends React.Component {
           </div>
         }
 
-{ 
+        { 
           <div className='mainContent' style={{display: navKey === 'Schedule' ? 'flex' : 'none'}}>
             <Scheduler 
-              favList={favList}/> 
+              favList={favList}
+              modifyFavList={ (operation, key, course, sectionNum, subSectionNum) => this.handleModifyFavList(operation, key, course, sectionNum, subSectionNum)}/> 
           </div>
         }
 
