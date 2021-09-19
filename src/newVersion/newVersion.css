@@ -587,6 +587,28 @@
   z-index: 100;
 }
 
+.favListSec .selectAll {
+  display: flex;
+  position: relative;
+  width: 100%;
+  padding: 8px 8px 8px 42px;
+  box-sizing: border-box;
+  border-bottom: 1px solid #e8e9ef;
+  cursor: pointer;
+  user-select: none;
+}
+
+.favListSec .selectAll .checkBtn,
+.favListSec .selectAll .checkBtn_checked {
+  top: 10px;
+}
+
+.favListSec .selectAll span {
+  font-size: 22px;
+  font-weight: 700;
+  color: #0479a8;
+}
+
 .favList {
   display: flex;
   flex-direction: column;
@@ -594,6 +616,8 @@
   width: 100%;
   height: calc(100% - 200px);
   overflow-y: scroll;
+  border-bottom: 1px solid #0479a8;
+  user-select: none;
 }
 
 .favList .showSectionBtn,
@@ -661,8 +685,8 @@
   font-weight: 600;
 }
 
-.favList .checkBtn,
-.favList .checkBtn_checked {
+.favListSec .checkBtn,
+.favListSec .checkBtn_checked {
   display: flex;
   position: absolute;
   align-items: center;
@@ -674,17 +698,15 @@
   border-radius: 4px;
   box-sizing: border-box;
   cursor: pointer;
+  user-select: none;
 }
 
-.favList .favCourse .checkBtn,
-.favList .favCourse .checkBtn_checked {
+.favListSec .favCourse .checkBtn,
+.favListSec .favCourse .checkBtn_checked {
   top: 20px;
 }
 
-.favList .checkBtn {
-}
-
-.favList .checkBtn_checked {
+.favListSec .checkBtn_checked {
   background: #0479a8;
   color: #fff;
 }
@@ -741,4 +763,5 @@
   margin-left: 16px;
   color: #494949;
   font-size: 16px;
+  user-select: text;
 }

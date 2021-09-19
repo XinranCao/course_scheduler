@@ -9,8 +9,16 @@ function Scheduler (props) {
 
   const { favList, modifyFavList } = props
 
+  const handleModifyAllSelected = (operation) => {
+    let newList = {}
+    if (operation === 'add') {
+      newList = JSON.parse(JSON.stringify(favList))
+    }
+    setselectedCourseList(newList)
+  }
+
   const handleModifySelectedCourseList = (operation, key, course, sectionNum, subSectionNum) => {
-    
+
     const courseInfo = JSON.parse(JSON.stringify(course))
     const newList = JSON.parse(JSON.stringify(selectedCourseList))
 
@@ -44,6 +52,7 @@ function Scheduler (props) {
     }
 
     if (key === 'all') {
+      console.log('newList',newList)
       newList[courseInfo.number] = {...courseInfo}
     } else if (key === 'section') {
       // check if the course is already in schedule
@@ -85,11 +94,13 @@ function Scheduler (props) {
     setselectedCourseList(newList)
   }
 
+  // console.log('????',selectedCourseList)
   return <>
     <FavList
       favList = {favList} 
       modifyFavList = {modifyFavList}      
       selectedCourseList={selectedCourseList} 
+      modifyAllSelected={handleModifyAllSelected}
       modifySelectedCourseList={ (operation, key, course, sectionNum, subSectionNum) => handleModifySelectedCourseList(operation, key, course, sectionNum, subSectionNum) } />
     <Schedule selectedCourseList={selectedCourseList} />
   </>
