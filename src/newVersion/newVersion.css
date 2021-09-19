@@ -74,6 +74,7 @@
   background: #dadfe1;
   padding: 8px;
   box-sizing: border-box;
+  overflow: hidden;
 }
 
 .searchToolSec,
@@ -482,15 +483,17 @@
 }
 
 .sectionInfo {
+  height: 100%;
   margin-top: 32px;
 }
 
 .sectionTable {
+  height: 100%;
   font-size: 18px;
 }
 
 .sectionTable tbody {
-  height: 580px !important;
+  height: 100%;
   overflow: auto;
   display: block;
 }
@@ -505,7 +508,7 @@
 
 .sectionTable .sectionTh {
   font-weight: 600;
-  padding: 8px 0 8px 8px;
+  padding: 8px;
   border-top: 1px solid #dadfe1;
   border-bottom: 1px solid #dadfe1;
 }
@@ -570,6 +573,7 @@
 .timeTd {
   display: flex;
   margin-bottom: 4px;
+  width: 230px;
 }
 
 #addToListTip {
@@ -594,24 +598,41 @@
 
 .favList .showSectionBtn,
 .favList .showSectionBtn_active {
-  display: flex;
   position: absolute;
-  bottom: 16px;
+  height: 30px;
+  width: 140px;
+  bottom: 10px;
   left: 42px;
-  width: 0px;
-  height: 0px;
-  border: 16px solid;
-  border-top-color: #0479a8;
-  border-bottom-color: transparent;
-  border-right-color: transparent;
-  border-left-color: transparent;
-  transition: 0.2s;
+  text-align: center;
+  padding-top: 5px;
+  border-radius: 5px;
+  user-select: none;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 400;
+  background-color: #0479a8;
+  box-shadow: 0 3px 1px -2px rgb(0 0 0 / 20%), 0 2px 2px 0 rgb(0 0 0 / 14%),
+    0 1px 5px 0 rgb(0 0 0 / 12%);
+  transition: box-shadow 200ms linear;
   cursor: pointer;
+  box-sizing: border-box;
 }
 
-.favList .showSectionBtn_active {
-  bottom: 32px;
-  transform: scaleY(-1);
+.favSecInfo .showSectionBtn,
+.favSecInfo .showSectionBtn_active {
+  width: 160px;
+}
+
+.favList .showSectionBtn {
+  color: #0479a8;
+  background-color: rgba(4, 121, 168, 0.04);
+  border: 1px solid #0479a8;
+}
+.favList .showSectionBtn_active:hover,
+.favList .showSectionBtn:hover {
+  box-shadow: 0 5px 5px -3px rgb(0 0 0 / 20%), 0 8px 10px 1px rgb(0 0 0 / 14%),
+    0 3px 14px 2px rgb(0 0 0 / 12%);
+  transition: box-shadow 200ms linear;
 }
 
 .favList .favCourse,
@@ -625,49 +646,99 @@
 }
 
 .favList .favCourse {
-  min-height: 80px;
+  min-height: 86px;
 }
 
 .favList .favCourse .number {
   font-weight: 700;
   font-size: 24px;
+  margin-left: 0;
 }
 
-.favList .checkBtn {
+.favList .favSecInfo .number {
+  font-size: 20px;
+  margin-left: 8px;
+  font-weight: 600;
+}
+
+.favList .checkBtn,
+.favList .checkBtn_checked {
   display: flex;
   position: absolute;
+  align-items: center;
   top: 18px;
   left: 12px;
   width: 20px;
   height: 20px;
-  background: grey;
+  border: 1px solid #0479a8;
+  border-radius: 4px;
+  box-sizing: border-box;
   cursor: pointer;
 }
 
+.favList .favCourse .checkBtn,
+.favList .favCourse .checkBtn_checked {
+  top: 20px;
+}
+
+.favList .checkBtn {
+}
+
+.favList .checkBtn_checked {
+  background: #0479a8;
+  color: #fff;
+}
+
 .favList .number {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 500;
   color: #282728;
+  margin-left: 16px;
 }
 
 .favList .credits {
-  display: flex;
+  margin-top: 1px;
+  right: 10px;
   position: absolute;
-  top: 16px;
-  right: 0;
+}
+
+.favList .creditNum {
+  font-size: 22px;
+  font-weight: 700;
+  color: #0479a8;
 }
 
 .favList .removeBtn {
-  display: flex;
   position: absolute;
-  bottom: 0;
-  right: 0;
+  right: 8px;
+  bottom: 10px;
+  height: 30px;
+  width: 90px;
+  text-align: center;
+  padding: 4px 0 8px;
+  border-radius: 5px;
+  color: #c5050c;
+  background-color: rgba(197, 5, 12, 0.04);
+  border: 1px solid #c5050c;
+  user-select: none;
+  font-size: 16px;
+  font-weight: 400;
+  box-shadow: 0 3px 1px -2px rgb(0 0 0 / 20%), 0 2px 2px 0 rgb(0 0 0 / 14%),
+    0 1px 5px 0 rgb(0 0 0 / 12%);
+  transition: box-shadow 200ms linear;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+.favList .removeBtn:hover {
+  box-shadow: 0 5px 5px -3px rgb(0 0 0 / 20%), 0 8px 10px 1px rgb(0 0 0 / 14%),
+    0 3px 14px 2px rgb(0 0 0 / 12%);
+  transition: box-shadow 200ms linear;
 }
 
 .favList .time {
   display: flex;
   margin-bottom: 4px;
-  margin-left: 10px;
+  margin-left: 16px;
   color: #494949;
-  font-size: 18px;
+  font-size: 16px;
 }

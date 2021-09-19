@@ -95,11 +95,11 @@ function DetailInfo (props) {
                 <table className="sectionTable" cellSpacing='0' width="100%">
                   <tbody onScroll={tableScoll}>
                     <tr id='sectionThead'>
-                      <td width='75px' className='sectionTh'>Favorite</td>
-                      <td width='85px' className='sectionTh'>Sections</td>
-                      <td width='220px' className='sectionTh'>Time</td>
-                      <td width='135px' className='sectionTh'>Instructor</td>
-                      <td width='140px' className='sectionTh'>Location</td>
+                      <td className='sectionTh'>Favorite</td>
+                      <td  className='sectionTh'>Sections</td>
+                      <td   className='sectionTh'>Time</td>
+                      <td className='sectionTh'>Instructor</td>
+                      <td  className='sectionTh'>Location</td>
                     </tr>
                     {
                       Object.entries(courseInfo.sections).map(([section,sectionInfo]) => (
@@ -135,7 +135,7 @@ function DetailInfo (props) {
                             <td className='sectionTd lec'>
                               {
                                 Object.entries(sectionInfo.time).map(([day,time]) => (
-                                  <span className='timeTd' key={day+time}>{getDay(day)}{time}</span>
+                                  <span className=' ' key={day+time}>{getDay(day)}{time}</span>
                                 ))
                               }
                             </td>
