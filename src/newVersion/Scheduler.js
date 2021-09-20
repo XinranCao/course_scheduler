@@ -1,13 +1,39 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import FavList from './schedulerComp/FavList'
 import Schedule from './schedulerComp/Schedule'
 import './newVersion.css';
 
 function Scheduler (props) {
 
+  const { favList, modifyFavList } = props
   const [selectedCourseList, setselectedCourseList] = useState({})
 
-  const { favList, modifyFavList } = props
+  useEffect(()=> {
+    let newList = JSON.parse(JSON.stringify(selectedCourseList))
+
+    Object.entries(selectedCourseList).map( ([selectedCourse, courseInfo]) => {
+      if( Object.keys(favList).includes(selectedCourse) ) {
+        Object.entries(courseInfo.sections).map(([ selectedSec, sectionInfo ])=>{
+          if(Object.keys(favList[selectedCourse].sections).includes(selectedSec)) {
+            Object.entries(sectionInfo.subsections).map(([ selectedSubSec ])=>{
+              if(!Object.keys(favList[selectedCourse].sections[selectedSec].subsections).includes(selectedSubSec)) {
+                delete newList[selectedCourse].sections[selectedSec].subsections[selectedSubSec]
+              }
+              return null
+            })
+          } else {
+            delete newList[selectedCourse].sections[selectedSec]
+          }
+          return null
+        })
+      } else {
+        delete newList[selectedCourse]
+      }
+      return null
+    })
+    setselectedCourseList(newList)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[favList])
 
   const handleModifyAllSelected = (operation) => {
     let newList = {}
@@ -52,7 +78,6 @@ function Scheduler (props) {
     }
 
     if (key === 'all') {
-      console.log('newList',newList)
       newList[courseInfo.number] = {...courseInfo}
     } else if (key === 'section') {
       // check if the course is already in schedule
@@ -94,12 +119,11 @@ function Scheduler (props) {
     setselectedCourseList(newList)
   }
 
-  // console.log('????',selectedCourseList)
   return <>
     <FavList
       favList = {favList} 
       modifyFavList = {modifyFavList}      
-      selectedCourseList={selectedCourseList} 
+      selectedCourseList={selectedCourseList}
       modifyAllSelected={handleModifyAllSelected}
       modifySelectedCourseList={ (operation, key, course, sectionNum, subSectionNum) => handleModifySelectedCourseList(operation, key, course, sectionNum, subSectionNum) } />
     <Schedule selectedCourseList={selectedCourseList} />

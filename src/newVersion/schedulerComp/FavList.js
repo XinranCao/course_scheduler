@@ -1,11 +1,78 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../newVersion.css';
 
 function FavList(props) {  
-  
-  const [showSecList, setShowSecList] = useState([])
-  const [showSubSecList, setShowSubSecList] = useState([])
-  const { favList, modifyFavList, selectedCourseList, modifyAllSelected, modifySelectedCourseList } = props
+
+  const { 
+    favList, 
+    modifyFavList, 
+    selectedCourseList,
+    modifyAllSelected, 
+    modifySelectedCourseList
+  } = props
+
+  const [showList, setShowList] = useState({
+    showSecList: [],
+    showSubSecList: []
+  })
+
+  useEffect(()=>{
+    let newShowSecList = []
+    let newShowSubSecList = []
+
+    showList.showSecList.map( course => {
+      if (Object.keys(favList).includes(course)) {
+        newShowSecList = [...showList.showSecList]
+        showList.showSubSecList.map( course_sec => {
+          if (!Object.keys(favList[course].sections).includes(course_sec.split('-')[1])) {
+            newShowSubSecList = showList.showSubSecList.filter( e => e !== course_sec )
+          } else {
+            newShowSubSecList = [...showList.showSubSecList]
+          }
+          return null
+        })
+      } else {
+        newShowSecList = showList.showSecList.filter( e => e !== course )
+        newShowSubSecList = showList.showSubSecList.filter( e => e.indexOf(course) < 0 )
+      }
+      return null
+    })
+
+    setShowList({ 
+      showSecList: newShowSecList,
+      showSubSecList: newShowSubSecList
+    })
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [favList])
+
+  const toggleShowSecList = (course) => {
+    if( showList.showSecList.indexOf(course) < 0 ) {
+      setShowList({
+        ...showList,
+        showSecList: [...showList.showSecList, course]
+      })
+    } else {
+      setShowList({
+        showSecList: showList.showSecList.filter( e => e !== course ),
+        showSubSecList: showList.showSubSecList.filter( e => e.indexOf(course) < 0 )
+      })
+    }
+  }
+
+  const toggleShowSubSecList = (course, section) => {
+    const course_sec = course + '-' + section
+    if( showList.showSubSecList.indexOf(course_sec) < 0 ) {
+      setShowList({
+        ...showList,
+        showSubSecList: [...showList.showSubSecList, course_sec]
+      })
+    } else {
+      setShowList({
+        ...showList,
+        showSubSecList: showList.showSubSecList.filter( e => e !== course_sec )
+      })
+    }
+  }
     
   const getDay = (day) => {
     const dayMap = {
@@ -18,22 +85,6 @@ function FavList(props) {
       'Sunday': 'Sun '
     }
     return dayMap[day.toLowerCase()]
-  }
-
-  const toggleShowSecList = (course) => {
-    if( showSecList.indexOf(course) < 0 ) {
-      setShowSecList([...showSecList, course])
-    } else {
-      setShowSecList(showSecList.filter( e => e !== course ))
-    }
-  }
-
-  const toggleShowSubSecList = (section) => {
-    if( showSubSecList.indexOf(section) < 0 ) {
-      setShowSubSecList([...showSubSecList, section])
-    } else {
-      setShowSubSecList(showSubSecList.filter( e => e !== section ))
-    }
   }
 
   const toggleAllCourses = (operation) => {
@@ -68,6 +119,7 @@ function FavList(props) {
     let totalCretis = 0
     Object.values(selectedCourseList).map(courseInfo => {
       totalCretis += courseInfo.credits
+      return null
     })
     return totalCretis
   }
@@ -85,9 +137,14 @@ function FavList(props) {
               <div className='checkBtn'/>
               <span>Select all</span>
           </div> 
-      : null
+      : <div className='selectAll' />
     }
     <div className='favList'>
+      {
+        Object.values(favList).length
+          ? null
+          : <span className='noCourseTip'>Currently no course in list</span>
+      }
       {
         Object.values(favList).map( course => {
           const courseSelected = selectedCourseList[course.number]
@@ -99,9 +156,9 @@ function FavList(props) {
                   {courseSelected ? '✓' : ''}
               </div>
               <div 
-                className={ showSecList.includes(course.number) ? 'showSectionBtn' : 'showSectionBtn_active' }
+                className={ showList.showSecList.includes(course.number) ? 'showSectionBtn' : 'showSectionBtn_active' }
                 onClick={()=>toggleShowSecList(course.number)}>
-                  {showSecList.includes(course.number) ? 'Hide sections' : 'Show sections'}
+                  {showList.showSecList.includes(course.number) ? 'Hide sections' : 'Show sections'}
               </div>
               <div className='number'>{course.number}</div>
               <div className='credits'>
@@ -112,11 +169,10 @@ function FavList(props) {
                 className='removeBtn' 
                 onClick={()=>{
                   modifyFavList( 'remove', 'all', course, null, null);
-                  modifySelectedCourseList( courseSelected ? 'remove' : 'add', 'all', course, null, null)
                 } }>Remove</div>
             </div>
             {
-              showSecList.includes(course.number) ? 
+              showList.showSecList.includes(course.number) ? 
                 Object.entries(course.sections).map(([section,sectionInfo]) => (
                   <React.Fragment key={section}>
                     <div className='favSecInfo' >
@@ -132,9 +188,9 @@ function FavList(props) {
                       {
                         Object.keys(sectionInfo.subsections).length !== 0
                         ? <div 
-                            className={ showSubSecList.includes(section) ? 'showSectionBtn' : 'showSectionBtn_active' }
-                            onClick={()=>toggleShowSubSecList(section)}>
-                              {showSubSecList.includes(section) ? 'Hide subsections' : 'Show subsections'}
+                            className={ showList.showSubSecList.includes(course.number + '-' + section) ? 'showSectionBtn' : 'showSectionBtn_active' }
+                            onClick={()=>toggleShowSubSecList(course.number, section)}>
+                              {showList.showSubSecList.includes(course.number + '-' + section) ? 'Hide subsections' : 'Show subsections'}
                           </div>
                         : null
                       }
@@ -150,11 +206,10 @@ function FavList(props) {
                         className='removeBtn' 
                         onClick={()=>{
                           modifyFavList( 'remove', 'section', course, section, null);
-                          modifySelectedCourseList( 'remove', 'section', course, section, null)
                         }}>Remove</div>
                     </div>
                     {
-                      showSubSecList.includes(section) ? 
+                      showList.showSubSecList.includes(course.number + '-' + section) ? 
                         Object.entries(sectionInfo.subsections).map(([subsection,subsectionInfo]) => (
                           <div className='favSubSecInfo' key={subsection}>
                             {
@@ -180,7 +235,6 @@ function FavList(props) {
                               className='removeBtn' 
                               onClick={()=>{
                                 modifyFavList( 'remove', 'subsection', course, section, subsection);
-                                modifySelectedCourseList( 'remove', 'subsection', course, section, subsection)
                               } }>Remove</div>
                           </div>
                         )) : null

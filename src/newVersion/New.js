@@ -75,7 +75,7 @@ class New extends React.Component {
     } else if (key === 'section') {
       // check if the course is already in schedule
       if (newList[courseInfo.number]) {
-          (newList[courseInfo.number].sections)[sectionNum] = courseInfo.sections[sectionNum]
+          newList[courseInfo.number].sections[sectionNum] = courseInfo.sections[sectionNum]
       } else {
         newList[courseInfo.number] = {
           ...courseInfo,

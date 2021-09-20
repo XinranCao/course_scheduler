@@ -590,6 +590,7 @@
 .favListSec .selectAll {
   display: flex;
   position: relative;
+  height: 42px;
   width: 100%;
   padding: 8px 8px 8px 42px;
   box-sizing: border-box;
@@ -618,6 +619,14 @@
   overflow-y: scroll;
   border-bottom: 1px solid #0479a8;
   user-select: none;
+}
+
+.favList .noCourseTip {
+  position: absolute;
+  top: 40%;
+  left: 26px;
+  font-size: 26px;
+  color: #0479a8;
 }
 
 .favList .showSectionBtn,
@@ -764,4 +773,14 @@
   color: #494949;
   font-size: 16px;
   user-select: text;
+}
+
+.favListSec .footer {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  height: 90px;
+  padding: 12px 16px;
+  box-sizing: border-box;
 }
