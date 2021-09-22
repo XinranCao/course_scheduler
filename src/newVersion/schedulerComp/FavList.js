@@ -3,7 +3,7 @@ import '../newVersion.css';
 
 function FavList(props) {  
 
-  const { favList, modifyFavList } = props
+  const { favList, modifyFavList, generateSchedule } = props
 
   const [state, setState] = useState({
     showSecList: [],
@@ -259,7 +259,6 @@ function FavList(props) {
                 onClick={ () => modifySelectedCourseList( courseSelected ? 'remove' : 'add', 'all', course, null, null) }>
                   {courseSelected ? '✓' : ''}
               </div>
-              {console.log('state',state)}
               <div 
                 className={ state.showSecList.includes(course.number) ? 'showSectionBtn' : 'showSectionBtn_active' }
                 onClick={()=>toggleShowSecList(course.number)}>
@@ -359,7 +358,10 @@ function FavList(props) {
       <div className='settingBtn'></div>
       <div
         className = { Object.values(state.selectedCourseList).length ? 'generateBtn' : 'generateBtn_disabled' }
-        onClick={ ()=>{Object.values(state.selectedCourseList).length ? console.log('a') : console.log('b')}}>
+        onClick={ ()=>{
+          Object.values(state.selectedCourseList).length 
+            ? generateSchedule(state.selectedCourseList) 
+            : console.log('no course selected')}}>
         Generate Schedule
       </div>
     </div>

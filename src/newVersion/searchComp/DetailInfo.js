@@ -135,7 +135,7 @@ function DetailInfo (props) {
                             <td className='sectionTd lec'>
                               {
                                 Object.entries(sectionInfo.time).map(([day,time]) => (
-                                  <span className=' ' key={day+time}>{getDay(day)}{time}</span>
+                                  <span className='timeTd' key={day+time}>{getDay(day)}{time}</span>
                                 ))
                               }
                             </td>

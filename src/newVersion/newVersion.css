@@ -113,6 +113,12 @@
   width: 360px;
 }
 
+.scheduleSec {
+  min-width: 700px;
+  width: calc(100% - 368px);
+  margin-left: 8px;
+}
+
 .sectionTitle {
   display: flex;
   align-items: center;
@@ -164,6 +170,7 @@
   height: auto;
   width: 100%;
   color: #494949;
+  background: #f7f7f7;
   font-size: 20px;
   padding: 8px 0;
   border-color: transparent;
@@ -500,10 +507,9 @@
 
 #sectionThead {
   z-index: 100;
-  background: white;
+  background: #f7f7f7;
   position: sticky;
   top: -4px;
-  /* box-shadow: 0px 6px 12px -8px #646569; */
 }
 
 .sectionTable .sectionTh {
@@ -521,7 +527,7 @@
 }
 
 .sectionTable .lec {
-  background: rgba(100, 101, 105, 0.1);
+  background: rgba(100, 101, 105, 0.08);
   font-weight: 500;
 }
 
