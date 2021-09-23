@@ -25,17 +25,17 @@ function Schedule(props) {
       let newList = []
 
       tempList.map( tempSchedule => {
-
-        let newSchedule = JSON.parse(JSON.stringify(tempSchedule))
-        let conflict = false
-
         for ( const [section, sectionInfo] of Object.entries(courseInfo.sections) ) {
+
+          let newSchedule = JSON.parse(JSON.stringify(tempSchedule))
+          let conflict = false
 
           for ( const [date, hours] of Object.entries(sectionInfo.time) ) {
 
             let [start, end] = hours.split('-')
 
             if ( Object.values(newSchedule[date]).every( item => checkConflict( item, [start, end] )) ) {
+
               newSchedule[date][ course + '-' + section ] = {
                 'instructor': sectionInfo.instructor,
                 'location': sectionInfo.location,
@@ -51,14 +51,13 @@ function Schedule(props) {
 
           if (conflict) {
             continue;
-          } else if ( !Object.keys(sectionInfo.subsections) ) {
+          } else if ( !Object.keys(sectionInfo.subsections).length ) {
             newList.push(newSchedule)
             continue;
           }
 
           for ( const [subsection, subsectionInfo] of Object.entries(sectionInfo.subsections) ) {
             let newScheduleWithSubsec = JSON.parse(JSON.stringify(newSchedule))
-
             for ( const [date, hours] of Object.entries(subsectionInfo.time) ) {
 
               let [start, end] = hours.split('-')
@@ -73,6 +72,7 @@ function Schedule(props) {
                     'end': end
                   }
                 }
+                conflict = false
               } else {
                 conflict = true
               }
@@ -83,7 +83,7 @@ function Schedule(props) {
           }
         }
       })
-      tempList = newList
+      tempList = [...newList]
     }
     console.log(tempList)
     setScheduleList(tempList) 
@@ -91,6 +91,16 @@ function Schedule(props) {
 
   const checkConflict = (compareSec, [start, end]) => {
 
+    const start_1 = new Date("01/01/2000 " + start.trim().slice(0, -2) + " " + start.trim().slice(-2)).getTime()
+    const end_1 = new Date("01/01/2000 " + end.trim().slice(0, -2) + " " + end.trim().slice(-2)).getTime()
+
+    const start_2 = new Date("01/01/2000 " + compareSec.time.start.trim().slice(0, -2) + " " + compareSec.time.start.trim().slice(-2)).getTime()
+    const end_2 = new Date("01/01/2000 " + compareSec.time.end.trim().slice(0, -2) + " " + compareSec.time.end.trim().slice(-2)).getTime()
+
+    if (end_1 < start_2 || start_1 > end_2 ) {
+      return true
+    }
+    return false
   }
 
   const getCourseBlock = (weekday) => {
