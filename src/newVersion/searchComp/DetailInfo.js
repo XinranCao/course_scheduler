@@ -45,8 +45,6 @@ function DetailInfo (props) {
       'wednesday': 'Wed ',
       'thursday': 'Thu ',
       'friday': 'Fri ',
-      'Saturday': 'Sat ',
-      'Sunday': 'Sun '
     }
     return dayMap[day.toLowerCase()]
   }
