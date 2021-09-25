@@ -12,8 +12,8 @@ function Schedule(props) {
   const { scheduleList, currSchedule } = state
   const keyword = useRef(null)
   let myFormRef = useRef(null)
-  // const timeLine = ['7:00', '8:00', '9:00', '10:00', '11:00', '12:00', 
-  //                   '13:00', '14:00', '15:00', '16:00', '17:00', '18:00']
+  const timeLine = ['8:00am', '9:00am', '10:00am', '11:00am', '12:00pm', 
+                    '1:00pm', '2:00pm', '3:00pm', '4:00pm', '5:00pm']
 
   useEffect(()=>{
     let tempList = []
@@ -93,11 +93,9 @@ function Schedule(props) {
       })
       tempList = [...newList]
     }
-    console.log(tempList)
 
     if (myFormRef.current !== null) {
       myFormRef.current.reset() 
-      console.log('myFormRef',myFormRef)
     }  else {
     }
     // const pageForm = document.getElementById('pageForm').reset()
@@ -132,26 +130,43 @@ function Schedule(props) {
     return dayMap[day.toLowerCase()]
   }
 
+  const convertTime = (time) => {
+    let hour = Number(time.split(':')[0])
+    if (time.includes('pm') && (hour !== 12)) {
+      hour += 12;
+    }
+    let minute = Number(time.split(':')[1].trim().slice(0, -2));
+    return hour + minute / 60;
+  }
+
+  const getDistance = (start, end) => {
+    const top = 30 + 690 * ((convertTime(start) - convertTime('7:30am')) / (convertTime('5:30pm') - convertTime('7:30am')))
+    const bottom = 30 + 690 * ((convertTime(end) - convertTime('7:30am')) / (convertTime('5:30pm') - convertTime('7:30am')))
+    return [top, bottom]
+  }
+
   const getCourseBlock = (weekday) => {
     let components = []
     if (!scheduleList.length){ return null}
     const dayList = scheduleList[currSchedule][weekday]
-   
 
     for ( const [number, classInfo] of Object.entries(dayList)) {
       const classNum = number.split('-')
+      const distances = getDistance(classInfo.time.start, classInfo.time.end)
       components.push(
-        <div key={number} className='classCard'>
-          {number}
+        <div 
+          key={number} 
+          className='classCard' 
+          style={{ 
+            height: `${distances[1] - distances[0]}px`, 
+            top: `${distances[0]}px`
+          }}>
+          <span>{`${classNum[0]}`}</span>
+          <span>{`${classNum[classNum.length - 1]}`}</span>
+          <span>{`${classInfo.time.start} - ${classInfo.time.end}`}</span>
         </div>
       )
-      if (classNum.length === 2) {
-
-      } else {
-
-      }
     }
-    console.log('components',components)
 
     return components
   }
@@ -199,16 +214,15 @@ function Schedule(props) {
       {
         ['monday', 'tuesday', 'wednesday', 'thursday', 'friday'].map( weekday => (
           <div className='weekdayArea' key={weekday}>
-
-            <span>{getDay(weekday)}</span>
+            <span className='weekday'>{getDay(weekday)}</span>
             { getCourseBlock(weekday) }
           </div>
         ))
       }
       {
-        // timeLine.map( item => (
-        //   <hr/>
-        // ))
+        timeLine.map( item => (
+          <hr key={item} style={{ top: `${getDistance(item, item)[0]}px`}}/>
+        ))
       }
     </div>
       : null
