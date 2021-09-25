@@ -12,8 +12,8 @@ function Schedule(props) {
   const { scheduleList, currSchedule } = state
   const keyword = useRef(null)
   let myFormRef = useRef(null)
-  const timeLine = ['8:00am', '9:00am', '10:00am', '11:00am', '12:00pm', 
-                    '1:00pm', '2:00pm', '3:00pm', '4:00pm', '5:00pm']
+  const timeLine = ['8:00 am', '9:00 am', '10:00 am', '11:00 am', '12:00 pm', 
+                    '1:00 pm', '2:00 pm', '3:00 pm', '4:00 pm', '5:00 pm']
 
   useEffect(()=>{
     let tempList = []
@@ -172,16 +172,45 @@ function Schedule(props) {
   }
 
   const handleSetCurrSchedule = (operation, number) => {
+    let nextSchedule = -1
+
     if (operation === 'jump') {
+
       document.getElementById('pageNum').blur()
-      setState({
-        ...state,
-        currSchedule: parseInt(number) - 1
-      })
+      myFormRef.current.reset() 
+
+      if (!/^[0-9]*$/.test(number)) {
+        console.log('not number', number)
+        return
+      }
+
+      if (number <= scheduleList.length) { 
+        nextSchedule =  parseInt(number) - 1 
+      }
+      
+    } else if (operation === 'prev') {
+      if (currSchedule > 0) { 
+        myFormRef.current.reset()
+        nextSchedule = currSchedule - 1 ;
+      }
+    } else if (operation === 'next') {
+      if (currSchedule < scheduleList.length - 1) { 
+        myFormRef.current.reset()
+        nextSchedule = currSchedule + 1 ;
+      }
+    } else {
+      return 
     }
+
+    console.log('nextSchedule',nextSchedule)
+    if (nextSchedule < 0) { return }
+    setState({
+      ...state,
+      currSchedule: nextSchedule
+    })
   }
 
-    console.log('currSchedule',currSchedule)
+    // console.log('currSchedule',currSchedule)
   return <div className='scheduleSec'>
     <div className='sectionTitle'>Schedules
     {
@@ -189,43 +218,47 @@ function Schedule(props) {
         ? scheduleList.length
           ? <div className='pagination'>
             <div 
-              className={ currSchedule ? 'controlBtn' : 'controlBtn_disabled' }
+              id = 'prevbtn'
+              className={ currSchedule > 0 ? 'controlBtn' : 'controlBtn_disabled' }
               onClick={()=>handleSetCurrSchedule('prev', null)}>{'<'}</div>
             <div className='pageNum'>
               <form id='pageForm' onSubmit={(e) => { e.preventDefault(); handleSetCurrSchedule('jump', keyword.current.value) }} ref={myFormRef}>
-                <input id='pageNum' type='text' defaultValue={currSchedule + 1} ref={keyword} autoComplete="off"/>
+                <input id='pageNum' type='text' size='3' defaultValue={currSchedule + 1} ref={keyword} autoComplete="off"/>
               </form>
-              {'/'}
+              {'/ '}
               <span>{scheduleList.length}</span>
             </div>
             <div 
-              className={ currSchedule <= scheduleList.length ? 'controlBtn' : 'controlBtn_disabled' }
+              id = 'nextbtn'
+              className={ currSchedule < scheduleList.length - 1 ? 'controlBtn' : 'controlBtn_disabled' }
               onClick={()=>handleSetCurrSchedule('next', null)}>{'>'}</div>
           </div>
-          : <span>No possible schedule</span>
+          : <div className='pagination'>No possible schedule</div>
         : null
     }
 
     </div>
-    <div className='control'></div>
     {
       scheduleList.length 
-      ?     <div className='calendar'>
-      {
-        ['monday', 'tuesday', 'wednesday', 'thursday', 'friday'].map( weekday => (
-          <div className='weekdayArea' key={weekday}>
-            <span className='weekday'>{getDay(weekday)}</span>
-            { getCourseBlock(weekday) }
-          </div>
-        ))
-      }
-      {
-        timeLine.map( item => (
-          <hr key={item} style={{ top: `${getDistance(item, item)[0]}px`}}/>
-        ))
-      }
-    </div>
-      : null
+        ? <div className='calendar'>
+          {
+            ['monday', 'tuesday', 'wednesday', 'thursday', 'friday'].map( weekday => (
+              <div className='weekdayArea' key={weekday}>
+                <span className='weekday'>{getDay(weekday)}</span>
+                { getCourseBlock(weekday) }
+              </div>
+            ))
+          }
+          {
+            timeLine.map( item => {
+              const top = getDistance(item, item)[0]
+              return <React.Fragment key={item}>
+                <span className='timeTip' style={{ top: `${top - 10}px`}}>{item}</span>
+                <div  className='timeLine' style={{ top: `${top}px`}}/>
+              </React.Fragment>
+            })
+          }
+        </div> : null
     }
 
   </div>
