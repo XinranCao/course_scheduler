@@ -2,7 +2,7 @@
   position: relative;
   display: flex;
   width: 100vw;
-  min-width: 1292px;
+  min-width: 1184px;
   height: 100vh;
   background: #f7f7f7;
   box-sizing: border-box;
@@ -13,26 +13,26 @@
   display: flex;
   align-items: center;
   width: 100%;
-  height: 60px;
+  height: 56px;
   background: #c5050c;
-  padding-left: 12px;
+  padding-left: 10px;
   box-sizing: border-box;
   user-select: none;
 }
 
 .navTitle {
   font-family: Verlag, "Helvetica Neue", Helvetica, Arial, sans-serif;
-  margin: 0 32px 0 16px;
+  margin: 0 30px 0 14px;
   color: #fefefe;
-  font-size: 28px;
+  font-size: 26px;
 }
 
 .tab,
 .tabActive {
   display: flex;
   position: relative;
-  margin-left: 24px;
-  font-size: 24px;
+  margin-left: 22px;
+  font-size: 22px;
   cursor: pointer;
 }
 
@@ -69,11 +69,11 @@
   position: relative;
   display: flex;
   width: 100%;
-  height: calc(100% - 60px);
-  min-height: 816px;
-  margin-top: 60px;
+  height: calc(100% - 56px);
+  min-height: 700px;
+  margin-top: 56px;
   background: #dadfe1;
-  padding: 8px;
+  padding: 6px;
   box-sizing: border-box;
   overflow: hidden;
 }
@@ -94,30 +94,30 @@
 
 .searchToolSec {
   min-width: 240px;
-  max-width: 260px;
+  max-width: 240px;
   width: calc(24vw);
 }
 
 .courseListSec {
-  min-width: 330px;
-  max-width: 360px;
+  min-width: 310px;
+  max-width: 340px;
   width: calc(26vw);
   margin: 0 8px;
 }
 
 .detailInfoSec {
-  min-width: 700px;
+  min-width: 680px;
   width: calc(60vw - 12px);
 }
 
 .favListSec {
-  width: 360px;
+  width: 340px;
 }
 
 .scheduleSec {
-  min-width: 700px;
-  width: calc(100% - 368px);
-  margin-left: 8px;
+  min-width: 680px;
+  width: calc(100% - 348px);
+  margin-left: 6px;
 }
 
 .sectionTitle {
@@ -126,11 +126,11 @@
   font-weight: 700;
   font-size: 24px;
   color: #fff;
-  height: 60px;
+  height: 56px;
   width: 100%;
   background: #0479a8;
   border-radius: 5px 5px 0 0;
-  padding-left: 16px;
+  padding-left: 14px;
   box-sizing: border-box;
   user-select: none;
 }
@@ -141,14 +141,14 @@
   flex-direction: column;
   width: 100%;
   height: calc(100% - 76px);
-  margin-top: 16px;
+  margin-top: 14px;
   box-sizing: border-box;
 }
 
 .settingText {
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 500;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .tagSetting,
@@ -163,6 +163,7 @@
 
 .chosenTags {
   margin-right: 0;
+  margin-top: 20px;
   height: calc(100% - 260px);
 }
 
@@ -172,9 +173,10 @@
   width: 100%;
   color: #494949;
   background: #f7f7f7;
-  font-size: 20px;
+  font-size: 18px;
   padding: 8px 0;
   border-color: transparent;
+  border-radius: 0;
   outline: none;
   box-sizing: border-box;
   border-bottom: 1px solid #adadad;
@@ -187,10 +189,13 @@
 
 .alert {
   color: rgb(197, 5, 12);
+  display: flex;
+  height: 32px;
   font-size: 14px;
+  align-items: flex-start;
   position: absolute;
   left: 0px;
-  bottom: -24px;
+  bottom: -34px;
 }
 
 .keywordList {
@@ -249,7 +254,7 @@
 .courseList {
   display: flex;
   flex-direction: column;
-  height: calc(100% - 60px);
+  height: calc(100% - 56px);
   width: 100%;
   padding-bottom: 8px;
   box-sizing: border-box;
@@ -261,10 +266,10 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  min-height: 126px;
-  max-height: 126px;
+  min-height: 120px;
+  max-height: 120px;
   width: 100%;
-  padding: 24px 0 16px 16px;
+  padding: 20px 0 16px 16px;
   border-bottom: 1px solid #e8e9ef;
   box-sizing: border-box;
   cursor: pointer;
@@ -282,14 +287,14 @@
 .courseSelected .number {
   position: relative;
   display: flex;
-  font-size: 24px;
+  font-size: 22px;
   font-weight: 700;
   color: #282728;
   transition: all 0.1s linear;
 }
 
 .courseSelected .number {
-  padding-left: 16px;
+  padding-left: 14px;
   transition: all 0.1s linear;
 }
 
@@ -299,7 +304,7 @@
   content: "";
   top: 4px;
   left: 0;
-  height: 22px;
+  height: 20px;
   background: #0479a8;
   border-radius: 2px;
   transition: all 0.1s linear;
@@ -315,13 +320,14 @@
 .courseSelected .name {
   margin: 8px 16px 8px 0;
   color: #494949;
+  font-size: 18px;
   line-height: 28px;
 }
 
 .courseInfo .credits,
 .courseSelected .credits {
-  margin-top: 1px;
-  right: 26px;
+  margin-top: -1px;
+  right: 16px;
   position: absolute;
 }
 
@@ -337,14 +343,14 @@
   flex-direction: column;
   padding: 16px 0;
   width: 100%;
-  height: calc(100% - 60px);
+  height: calc(100% - 56px);
   box-sizing: border-box;
 }
 
 .detailInfo .secShowBtn,
 .detailInfo .secHideBtn {
-  height: 38px;
-  width: 160px;
+  height: 32px;
+  width: 150px;
   text-align: center;
   padding: 6px 0 8px;
   margin-top: 16px;
@@ -352,7 +358,7 @@
   border-radius: 5px;
   user-select: none;
   color: #fff;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 400;
   background-color: #0479a8;
   box-shadow: 0 3px 1px -2px rgb(0 0 0 / 20%), 0 2px 2px 0 rgb(0 0 0 / 14%),
@@ -377,8 +383,8 @@
 
 .detailInfo .removeAll,
 .detailInfo .addAll {
-  height: 38px;
-  width: 240px;
+  height: 32px;
+  width: 230px;
   text-align: center;
   padding: 6px 0 8px;
   margin-top: 16px;
@@ -386,7 +392,7 @@
   border-radius: 5px;
   user-select: none;
   color: #fff;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 400;
   background-color: #0479a8;
   box-shadow: 0 3px 1px -2px rgb(0 0 0 / 20%), 0 2px 2px 0 rgb(0 0 0 / 14%),
@@ -435,9 +441,9 @@
 .detailInfo .favHeart_checked::before {
   content: "";
   position: absolute;
-  top: -9px;
+  top: -10px;
   left: -1px;
-  width: 15px;
+  width: 17px;
   height: 10px;
   border-radius: 10px 10px 0 0;
   border-top: solid 1px #c5050c;
@@ -448,10 +454,10 @@
 .detailInfo .favHeart_checked::after {
   content: "";
   position: absolute;
-  top: 1px;
+  top: 0px;
   left: 17px;
-  width: 9px;
-  height: 16px;
+  width: 10px;
+  height: 17px;
   border-radius: 0 10px 10px 0;
   border-top: solid 1px #c5050c;
   border-right: solid 1px #c5050c;
@@ -472,7 +478,7 @@
 .detailInfo .description {
   margin-top: 28px;
   padding: 0 16px;
-  font-size: 20px;
+  font-size: 18px;
 }
 
 .detailInfo .keywords,
@@ -480,7 +486,7 @@
   display: flex;
   font-weight: 300;
   margin-top: 32px;
-  font-size: 20px;
+  font-size: 18px;
   font-style: italic;
   padding: 0 16px;
 }
@@ -612,7 +618,7 @@
 }
 
 .favListSec .selectAll span {
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 700;
   color: #0479a8;
 }
@@ -632,7 +638,7 @@
   position: absolute;
   top: 40%;
   left: 26px;
-  font-size: 26px;
+  font-size: 24px;
   color: #0479a8;
 }
 
@@ -691,7 +697,7 @@
 
 .favList .favCourse .number {
   font-weight: 700;
-  font-size: 24px;
+  font-size: 22px;
   margin-left: 0;
 }
 
@@ -778,7 +784,7 @@
   margin-bottom: 4px;
   margin-left: 16px;
   color: #494949;
-  font-size: 16px;
+  font-size: 14px;
   user-select: text;
 }
 
@@ -793,7 +799,7 @@
 }
 
 .favListSec .footer .info div {
-  font-size: 20px;
+  font-size: 18px;
   margin: 2px 0;
   color: #494948;
 }
@@ -809,13 +815,13 @@
 .favListSec .footer .generateBtn_disabled {
   border-radius: 5px;
   position: absolute;
-  width: 330px;
-  right: 16px;
+  width: 310px;
+  right: 14px;
   bottom: 8px;
   padding: 8px 0 10px;
   text-align: center;
   color: #fff;
-  font-size: 24px;
+  font-size: 22px;
   font-weight: 600;
   background-color: #0479a8;
   box-shadow: 0 3px 1px -2px rgb(0 0 0 / 20%), 0 2px 2px 0 rgb(0 0 0 / 14%),
@@ -852,7 +858,7 @@
   position: relative;
   border-right: 1px solid #dadfe1;
   width: 20%;
-  height: 720px;
+  height: 640px;
   box-sizing: border-box;
 }
 
@@ -883,12 +889,13 @@
 }
 
 .calendar .weekdayArea .classCard span {
-  font-size: 14px;
+  font-size: 12px;
   color: #282728;
   font-weight: 500;
 }
 .calendar .weekdayArea .classCard span:first-child {
   font-weight: 700;
+  font-size: 14px;
 }
 .calendar .weekdayArea .classCard span:nth-child(2) {
   font-weight: 600;

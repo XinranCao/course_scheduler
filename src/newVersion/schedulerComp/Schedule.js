@@ -140,8 +140,8 @@ function Schedule(props) {
   }
 
   const getDistance = (start, end) => {
-    const top = 30 + 690 * ((convertTime(start) - convertTime('7:30am')) / (convertTime('5:30pm') - convertTime('7:30am')))
-    const bottom = 30 + 690 * ((convertTime(end) - convertTime('7:30am')) / (convertTime('5:30pm') - convertTime('7:30am')))
+    const top = 24 + 630 * ((convertTime(start) - convertTime('7:30am')) / (convertTime('5:30pm') - convertTime('7:30am')))
+    const bottom = 24 + 630 * ((convertTime(end) - convertTime('7:30am')) / (convertTime('5:30pm') - convertTime('7:30am')))
     return [top, bottom]
   }
 

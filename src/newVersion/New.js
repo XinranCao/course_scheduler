@@ -116,7 +116,7 @@ class New extends React.Component {
     const { navKey, allCourses, filteredCourses, favList } = this.state
     return <div className='page'>
         <div className='navBar'>
-          <img src={require('../img/logo3.svg')} height='75%' alt='logo'/>
+          <img src={require('../img/logo3.svg')} height='80%' alt='logo'/>
             <span className='navTitle'>{'Course Scheduler'}</span>
             {
                 ['Search','Schedule'].map(item => (
