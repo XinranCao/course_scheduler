@@ -103,7 +103,7 @@ function Schedule(props) {
     setState({
       scheduleList: tempList,
       currSchedule: 0,
-      boxHeight: document.getElementsByClassName('scheduleSec')[0].clientHeight - 72
+      boxHeight: document.getElementsByClassName('scheduleSec')[0].clientHeight - 82
     }) 
   },[selectedCourseList])
 
