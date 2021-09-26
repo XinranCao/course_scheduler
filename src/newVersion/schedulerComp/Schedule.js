@@ -5,11 +5,12 @@ function Schedule(props) {
 
   const [state, setState] = useState({
     scheduleList: [],
-    currSchedule: 0
+    currSchedule: 0,
+    boxHeight: 0
   })
 
   const { selectedCourseList } = props
-  const { scheduleList, currSchedule } = state
+  const { scheduleList, currSchedule, boxHeight } = state
   const keyword = useRef(null)
   let myFormRef = useRef(null)
   const timeLine = ['8:00 am', '9:00 am', '10:00 am', '11:00 am', '12:00 pm', 
@@ -101,7 +102,8 @@ function Schedule(props) {
     // const pageForm = document.getElementById('pageForm').reset()
     setState({
       scheduleList: tempList,
-      currSchedule: 0
+      currSchedule: 0,
+      boxHeight: document.getElementsByClassName('scheduleSec')[0].clientHeight - 72
     }) 
   },[selectedCourseList])
 
@@ -140,8 +142,9 @@ function Schedule(props) {
   }
 
   const getDistance = (start, end) => {
-    const top = 24 + 630 * ((convertTime(start) - convertTime('7:30am')) / (convertTime('5:30pm') - convertTime('7:30am')))
-    const bottom = 24 + 630 * ((convertTime(end) - convertTime('7:30am')) / (convertTime('5:30pm') - convertTime('7:30am')))
+
+    const top = 12 + boxHeight * ((convertTime(start) - convertTime('7:30am')) / (convertTime('5:30pm') - convertTime('7:30am')))
+    const bottom = 12 + boxHeight * ((convertTime(end) - convertTime('7:30am')) / (convertTime('5:30pm') - convertTime('7:30am')))
     return [top, bottom]
   }
 
