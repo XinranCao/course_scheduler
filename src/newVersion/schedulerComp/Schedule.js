@@ -202,7 +202,7 @@ function Schedule(props) {
       return 
     }
 
-    console.log('nextSchedule',nextSchedule)
+    // console.log('nextSchedule',nextSchedule)
     if (nextSchedule < 0) { return }
     setState({
       ...state,
