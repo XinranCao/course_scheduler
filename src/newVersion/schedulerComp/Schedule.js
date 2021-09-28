@@ -215,31 +215,31 @@ function Schedule(props) {
 
     // console.log('currSchedule',currSchedule)
   return <div className='scheduleSec'>
-    <div className='sectionTitle'>Schedules
-    {
-      Object.keys(selectedCourseList).length
-        ? scheduleList.length
-          ? <div className='pagination'>
-            <div 
-              id = 'prevbtn'
-              className={ currSchedule > 0 ? 'controlBtn' : 'controlBtn_disabled' }
-              onClick={()=>handleSetCurrSchedule('prev', null)}>{'<'}</div>
-            <div className='pageNum'>
-              <form id='pageForm' onSubmit={(e) => { e.preventDefault(); handleSetCurrSchedule('jump', keyword.current.value) }} ref={myFormRef}>
-                <input id='pageNum' type='text' size='3' defaultValue={currSchedule + 1} ref={keyword} autoComplete="off"/>
-              </form>
-              {'/ '}
-              <span>{scheduleList.length}</span>
+    <div className='sectionTitle'>
+      Schedules
+      {
+        Object.keys(selectedCourseList).length
+          ? scheduleList.length
+            ? <div className='pagination'>
+              <div 
+                id = 'prevbtn'
+                className={ currSchedule > 0 ? 'controlBtn' : 'controlBtn_disabled' }
+                onClick={()=>handleSetCurrSchedule('prev', null)}>{'<'}</div>
+              <div className='pageNum'>
+                <form id='pageForm' onSubmit={(e) => { e.preventDefault(); handleSetCurrSchedule('jump', keyword.current.value) }} ref={myFormRef}>
+                  <input id='pageNum' type='text' defaultValue={currSchedule + 1} ref={keyword} autoComplete="off"/>
+                </form>
+                {'/ '}
+                <span>{scheduleList.length}</span>
+              </div>
+              <div 
+                id = 'nextbtn'
+                className={ currSchedule < scheduleList.length - 1 ? 'controlBtn' : 'controlBtn_disabled' }
+                onClick={()=>handleSetCurrSchedule('next', null)}>{'>'}</div>
             </div>
-            <div 
-              id = 'nextbtn'
-              className={ currSchedule < scheduleList.length - 1 ? 'controlBtn' : 'controlBtn_disabled' }
-              onClick={()=>handleSetCurrSchedule('next', null)}>{'>'}</div>
-          </div>
-          : <div className='pagination'>No possible schedule</div>
-        : null
-    }
-
+            : <div className='pagination'>No possible schedule</div>
+          : null
+      }
     </div>
     {
       scheduleList.length 
@@ -256,14 +256,13 @@ function Schedule(props) {
             timeLine.map( item => {
               const top = getDistance(item, item)[0]
               return <React.Fragment key={item}>
-                <span className='timeTip' style={{ top: `${top - 10}px`}}>{item}</span>
+                <span className='timeTip' style={{ top: `${top - 12}px`}}>{item}</span>
                 <div  className='timeLine' style={{ top: `${top}px`}}/>
               </React.Fragment>
             })
           }
         </div> : null
     }
-
   </div>
 }
 

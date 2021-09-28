@@ -21,15 +21,15 @@ function Search (props) {
 
     Object.values(allCourses).map( course => {
       let courseKeywords = []
-      course.keywords.map(item=>courseKeywords.push(item))
-      courseKeywords.push(course.name, course.number)
+      course.keywords.map(item=>courseKeywords.push(item.toLowerCase()))
+      courseKeywords.push(course.name.toLowerCase(), course.number.toLowerCase())
 
       if (mode === 'intersection') {  // intersection of keywords
         let flag = true  // flag indicate whether currently all keywords are matched
         for (const keyword of keywordList) {  // user entered keywords
           let match = false // matchFlag indicator whether user entered keyword matches
           for (const courseKeyword of courseKeywords) { // course keywords
-            if (courseKeyword.indexOf(keyword) !== -1) {  // if match at least one keyword
+            if (courseKeyword.indexOf(keyword.toLowerCase()) !== -1) {  // if match at least one keyword
               match = true;
               break;
             }
@@ -45,7 +45,7 @@ function Search (props) {
         for (const keyword of keywordList) {  // user entered keywords
           let match = false // match flag
           for (const courseKeyword of courseKeywords) { // course keywords
-            if (courseKeyword.indexOf(keyword) !== -1) {  // if match at least one keyword
+            if (courseKeyword.indexOf(keyword.toLowerCase()) !== -1) {  // if match at least one keyword
               filteredCourses.push(course)  //  push the course into the filtered course list
               match = true
               break;  // because filter mode is "union", no need to check other keywords

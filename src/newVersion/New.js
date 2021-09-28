@@ -18,7 +18,6 @@ class New extends React.Component {
   }
 
   componentDidMount() {
-    // console.log('===',ClassInfo)
     this.setState({ 
       allCourses: ClassInfo, 
       filteredCourses: ClassInfo, 
@@ -115,40 +114,38 @@ class New extends React.Component {
   render() {
     const { navKey, allCourses, filteredCourses, favList } = this.state
     return <div className='page'>
-        <div className='navBar'>
-          <img src={require('../img/logo3.svg')} height='80%' alt='logo'/>
-            <span className='navTitle'>{'Course Scheduler'}</span>
-            {
-                ['Search','Schedule'].map(item => (
-                    <div 
-                        key={item}
-                        className= { navKey === item ? 'tabActive': 'tab' }
-                        onClick={()=>this.setState({ navKey: item })}>
-                            {item}
-                    </div>
-                ))
-            }
+      <div className='navBar'>
+        <img src={require('../img/logo3.svg')} height='80%' alt='logo'/>
+          <span className='navTitle'>{'Course Scheduler'}</span>
+          {
+              ['Search','Schedule'].map(item => (
+                  <div 
+                      key={item}
+                      className= { navKey === item ? 'tabActive': 'tab' }
+                      onClick={()=>this.setState({ navKey: item })}>
+                          {item}
+                  </div>
+              ))
+          }
+      </div>
+      { 
+        <div className='mainContent' style={{zIndex: navKey === 'Search' ? '100' : '0'}}>
+          <Search 
+            favList = {favList}
+            allCourses ={allCourses}
+            filteredCourses={filteredCourses} 
+            updateFilteredCourses={ (filteredCourses) => this.setState({ filteredCourses }) }
+            modifyFavList={ (operation, key, course, sectionNum, subSectionNum) => this.handleModifyFavList(operation, key, course, sectionNum, subSectionNum)} />  
         </div>
+      }
 
-        { 
-          <div className='mainContent' style={{display: navKey === 'Search' ? 'flex' : 'none'}}>
-            <Search 
-              favList = {favList}
-              allCourses ={allCourses}
-              filteredCourses={filteredCourses} 
-              updateFilteredCourses={ (filteredCourses) => this.setState({ filteredCourses }) }
-              modifyFavList={ (operation, key, course, sectionNum, subSectionNum) => this.handleModifyFavList(operation, key, course, sectionNum, subSectionNum)} />  
-          </div>
-        }
-
-        { 
-          <div className='mainContent' style={{display: navKey === 'Schedule' ? 'flex' : 'none'}}>
-            <Scheduler 
-              favList={favList}
-              modifyFavList={ (operation, key, course, sectionNum, subSectionNum) => this.handleModifyFavList(operation, key, course, sectionNum, subSectionNum)}/> 
-          </div>
-        }
-
+      { 
+        <div className='mainContent' style={{zIndex: navKey === 'Schedule' ? '100' : '0'}}>
+          <Scheduler 
+            favList={favList}
+            modifyFavList={ (operation, key, course, sectionNum, subSectionNum) => this.handleModifyFavList(operation, key, course, sectionNum, subSectionNum)}/> 
+        </div>
+      }
     </div>
   }
 }

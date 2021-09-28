@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import '../newVersion.css';
 
 function FavList(props) {  
@@ -10,6 +10,33 @@ function FavList(props) {
     showSubSecList: [],
     selectedCourseList: {}
   })
+  const favListBox = useRef(null)
+
+  useEffect(()=>{
+    if (favListBox.current) {
+      if (favListBox.current.style.boxShadow.includes('0px 10px 12px -8px')) {return}
+      if (favListBox.current.clientHeight !== favListBox.current.scrollHeight) {
+        favListBox.current.style.boxShadow = 'inset 0 -10px 10px -8px #646569'
+      } else {
+        favListBox.current.style.boxShadow = 'none'
+      }
+    }
+  },[favList])
+
+  const favListScroll = (e) => {
+    if (favListBox.current) {
+      const height = favListBox.current.scrollHeight - favListBox.current.clientHeight
+      if ( height > e.target.scrollTop && e.target.scrollTop ) {
+        favListBox.current.style.boxShadow = 'inset 0 -10px 10px -8px #646569, inset 0px 10px 12px -8px #646569'
+      } else if ( height > e.target.scrollTop ) {
+        favListBox.current.style.boxShadow = 'inset 0 -10px 10px -8px #646569'
+      } else if (e.target.scrollTop) {
+        favListBox.current.style.boxShadow = 'inset 0px 10px 12px -8px #646569'
+      } else {
+        favListBox.current.style.boxShadow = 'none'
+      }
+    }
+  }
 
   useEffect(()=>{
     let newShowSecList = []
@@ -243,12 +270,12 @@ function FavList(props) {
           </div> 
       : <div className='selectAll' />
     }
-    <div className='favList'>
-      {
-        Object.values(favList).length
-          ? null
-          : <span className='noCourseTip'>Currently no course in list</span>
-      }
+    <div className='favList' ref={favListBox} onScroll={favListScroll} >
+      <span 
+        className='noCourseTip' 
+        style={{ display: Object.values(favList).length
+                          ?'none' : 'flex'
+        }}>Currently no course in list</span>
       {
         Object.values(favList).map( course => {
           const courseSelected = state.selectedCourseList[course.number]
@@ -352,7 +379,11 @@ function FavList(props) {
     </div>
     <div className='footer'>
       <div className='info'>
-        <div>Selected <span>{Object.values(state.selectedCourseList).length}</span> classes</div>
+        <div>
+          Selected 
+          <span>{Object.values(state.selectedCourseList).length}</span> 
+          {Object.values(state.selectedCourseList).length > 1 ? 'classes' : 'class'}
+          </div>
         <div>Total credits: <span>{getTotalCredits()}</span></div>
       </div>
       <div className='settingBtn'></div>

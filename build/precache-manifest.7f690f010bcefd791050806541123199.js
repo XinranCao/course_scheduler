@@ -1,19 +1,19 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "16e023c06f6a650b934fc55a551f5ab8",
+    "revision": "81ec3eda9f2f989f1a1fb541a14dc557",
     "url": "/course_scheduler/index.html"
   },
   {
-    "revision": "3e090385845c639cd37b",
-    "url": "/course_scheduler/static/css/main.35d9e089.chunk.css"
+    "revision": "d521479918b4f4886d38",
+    "url": "/course_scheduler/static/css/main.3965c7e5.chunk.css"
   },
   {
-    "revision": "a9e2f02c86791212e33b",
-    "url": "/course_scheduler/static/js/2.fd2d69eb.chunk.js"
+    "revision": "1c9dc1509a4c7bb64657",
+    "url": "/course_scheduler/static/js/2.bc387a6c.chunk.js"
   },
   {
-    "revision": "3e090385845c639cd37b",
-    "url": "/course_scheduler/static/js/main.cd443322.chunk.js"
+    "revision": "d521479918b4f4886d38",
+    "url": "/course_scheduler/static/js/main.c3e2c9c6.chunk.js"
   },
   {
     "revision": "045921d0f45481f93ebf",
