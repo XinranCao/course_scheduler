@@ -13,8 +13,35 @@ function Schedule(props) {
   const { scheduleList, currSchedule, boxHeight } = state
   const keyword = useRef(null)
   let myFormRef = useRef(null)
-  const timeLine = ['8:00 am', '9:00 am', '10:00 am', '11:00 am', '12:00 pm', 
-                    '1:00 pm', '2:00 pm', '3:00 pm', '4:00 pm', '5:00 pm']
+  const calendar = useRef(null)
+  const timeLine = ['7:00am', '8:00 am', '9:00 am', '10:00 am', '11:00 am', '12:00 pm', '1:00 pm', 
+    '2:00 pm', '3:00 pm', '4:00 pm', '5:00 pm', '6:00 pm', '7:00 pm', '8:00 pm', '9:00 pm']
+
+  useEffect(()=>{
+    if (calendar.current) {
+      if (calendar.current.style.boxShadow.includes('0px 10px 12px -8px')) {return}
+      if (calendar.current.clientHeight !== calendar.current.scrollHeight) {
+        calendar.current.style.boxShadow = 'inset 0 -10px 10px -8px #646569'
+      } else {
+        calendar.current.style.boxShadow = 'none'
+      }
+    }
+  },)
+
+  const calendarScroll = (e) => {
+      const height = calendar.current.scrollHeight - calendar.current.clientHeight
+      if ( height > e.target.scrollTop && e.target.scrollTop ) {
+        calendar.current.style.boxShadow = 'inset 0 -10px 10px -8px #646569'
+      } else {
+        calendar.current.style.boxShadow = 'none'
+      }
+
+      for ( const weekday of document.getElementsByClassName('weekday') ) {
+        weekday.style.top = `${e.target.scrollTop - 16}px`
+        weekday.style.boxShadow = e.target.scrollTop > 16 ? '0px 10px 12px -8px #646569' : 'none'
+        weekday.style.top = `${e.target.scrollTop - 16}px`
+      }
+  }
 
   useEffect(()=>{
     let tempList = []
@@ -142,9 +169,8 @@ function Schedule(props) {
   }
 
   const getDistance = (start, end) => {
-
-    const top = 12 + boxHeight * ((convertTime(start) - convertTime('7:30am')) / (convertTime('5:30pm') - convertTime('7:30am')))
-    const bottom = 12 + boxHeight * ((convertTime(end) - convertTime('7:30am')) / (convertTime('5:30pm') - convertTime('7:30am')))
+    const top = 56 + 740 * ((convertTime(start) - convertTime('7:30am')) / (convertTime('9:00pm') - convertTime('7:30am')))
+    const bottom = 56 + 740 * ((convertTime(end) - convertTime('7:30am')) / (convertTime('9:00pm') - convertTime('7:30am')))
     return [top, bottom]
   }
 
@@ -205,7 +231,6 @@ function Schedule(props) {
       return 
     }
 
-    // console.log('nextSchedule',nextSchedule)
     if (nextSchedule < 0) { return }
     setState({
       ...state,
@@ -213,7 +238,6 @@ function Schedule(props) {
     })
   }
 
-    // console.log('currSchedule',currSchedule)
   return <div className='scheduleSec'>
     <div className='sectionTitle'>
       Schedules
@@ -243,11 +267,11 @@ function Schedule(props) {
     </div>
     {
       scheduleList.length 
-        ? <div className='calendar'>
+        ? <div className='calendar' ref={calendar} onScroll={calendarScroll}>
           {
             ['monday', 'tuesday', 'wednesday', 'thursday', 'friday'].map( weekday => (
               <div className='weekdayArea' key={weekday}>
-                <span className='weekday'>{getDay(weekday)}</span>
+                <div className='weekday'>{getDay(weekday)}</div>
                 { getCourseBlock(weekday) }
               </div>
             ))
@@ -256,8 +280,8 @@ function Schedule(props) {
             timeLine.map( item => {
               const top = getDistance(item, item)[0]
               return <React.Fragment key={item}>
-                <span className='timeTip' style={{ top: `${top - 12}px`}}>{item}</span>
-                <div  className='timeLine' style={{ top: `${top}px`}}/>
+                <div className='timeTip' style={{ top: `${top + 4}px`}}>{item}</div>
+                <div  className='timeLine' style={{ top: `${top + 16}px`}}/>
               </React.Fragment>
             })
           }

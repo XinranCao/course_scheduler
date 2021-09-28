@@ -24,17 +24,15 @@ function FavList(props) {
   },[favList])
 
   const favListScroll = (e) => {
-    if (favListBox.current) {
-      const height = favListBox.current.scrollHeight - favListBox.current.clientHeight
-      if ( height > e.target.scrollTop && e.target.scrollTop ) {
-        favListBox.current.style.boxShadow = 'inset 0 -10px 10px -8px #646569, inset 0px 10px 12px -8px #646569'
-      } else if ( height > e.target.scrollTop ) {
-        favListBox.current.style.boxShadow = 'inset 0 -10px 10px -8px #646569'
-      } else if (e.target.scrollTop) {
-        favListBox.current.style.boxShadow = 'inset 0px 10px 12px -8px #646569'
-      } else {
-        favListBox.current.style.boxShadow = 'none'
-      }
+    const height = favListBox.current.scrollHeight - favListBox.current.clientHeight
+    if ( height > e.target.scrollTop && e.target.scrollTop ) {
+      favListBox.current.style.boxShadow = 'inset 0 -10px 10px -8px #646569, inset 0px 10px 12px -8px #646569'
+    } else if ( height > e.target.scrollTop ) {
+      favListBox.current.style.boxShadow = 'inset 0 -10px 10px -8px #646569'
+    } else if (e.target.scrollTop) {
+      favListBox.current.style.boxShadow = 'inset 0px 10px 12px -8px #646569'
+    } else {
+      favListBox.current.style.boxShadow = 'none'
     }
   }
 
