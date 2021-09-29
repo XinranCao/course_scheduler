@@ -14,7 +14,7 @@ function Schedule(props) {
   const keyword = useRef(null)
   let myFormRef = useRef(null)
   const calendar = useRef(null)
-  const timeLine = ['7:00am', '8:00 am', '9:00 am', '10:00 am', '11:00 am', '12:00 pm', '1:00 pm', 
+  const timeLine = ['7:00 am', '8:00 am', '9:00 am', '10:00 am', '11:00 am', '12:00 pm', '1:00 pm', 
     '2:00 pm', '3:00 pm', '4:00 pm', '5:00 pm', '6:00 pm', '7:00 pm', '8:00 pm', '9:00 pm']
 
   useEffect(()=>{
@@ -169,8 +169,8 @@ function Schedule(props) {
   }
 
   const getDistance = (start, end) => {
-    const top = 56 + 740 * ((convertTime(start) - convertTime('7:30am')) / (convertTime('9:00pm') - convertTime('7:30am')))
-    const bottom = 56 + 740 * ((convertTime(end) - convertTime('7:30am')) / (convertTime('9:00pm') - convertTime('7:30am')))
+    const top = 56 + 800 * ((convertTime(start) - convertTime('7:30am')) / (convertTime('9:00pm') - convertTime('7:30am')))
+    const bottom = 56 + 800 * ((convertTime(end) - convertTime('7:30am')) / (convertTime('9:00pm') - convertTime('7:30am')))
     return [top, bottom]
   }
 

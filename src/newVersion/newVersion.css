@@ -875,6 +875,7 @@
   height: calc(100% - 56px);
   width: -webkit-fill-available;
   padding: 16px 0 0 96px;
+  border-radius: 0 0 5px 5px;
   box-sizing: border-box;
   overflow-y: scroll;
 }
@@ -885,7 +886,7 @@
   position: relative;
   border-right: 1px solid #dadfe1;
   width: 20%;
-  height: 800px;
+  height: 860px;
   box-sizing: border-box;
 }
 
@@ -899,7 +900,7 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 44px;
+  height: 40px;
   top: -16px;
   font-size: 22px;
   font-weight: 700;
@@ -914,10 +915,11 @@
   align-items: center;
   justify-content: space-evenly;
   position: absolute;
+  mix-blend-mode: darken;
   width: 100%;
   border-top: 1px solid #0479a8;
   border-bottom: 1px solid #0479a8;
-  background: rgb(218 223 225 / 50%);
+  background: rgb(218 223 225 / 75%);
   box-sizing: border-box;
   z-index: 100;
 }

@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/course_scheduler/static/css/main.3965c7e5.chunk.css",
-    "main.js": "/course_scheduler/static/js/main.c3e2c9c6.chunk.js",
-    "main.js.map": "/course_scheduler/static/js/main.c3e2c9c6.chunk.js.map",
+    "main.css": "/course_scheduler/static/css/main.f265d5c6.chunk.css",
+    "main.js": "/course_scheduler/static/js/main.1f8d790c.chunk.js",
+    "main.js.map": "/course_scheduler/static/js/main.1f8d790c.chunk.js.map",
     "runtime~main.js": "/course_scheduler/static/js/runtime~main.383e0d94.js",
     "runtime~main.js.map": "/course_scheduler/static/js/runtime~main.383e0d94.js.map",
-    "static/js/2.bc387a6c.chunk.js": "/course_scheduler/static/js/2.bc387a6c.chunk.js",
-    "static/js/2.bc387a6c.chunk.js.map": "/course_scheduler/static/js/2.bc387a6c.chunk.js.map",
+    "static/js/2.59dbd9f5.chunk.js": "/course_scheduler/static/js/2.59dbd9f5.chunk.js",
+    "static/js/2.59dbd9f5.chunk.js.map": "/course_scheduler/static/js/2.59dbd9f5.chunk.js.map",
     "index.html": "/course_scheduler/index.html",
-    "precache-manifest.7f690f010bcefd791050806541123199.js": "/course_scheduler/precache-manifest.7f690f010bcefd791050806541123199.js",
+    "precache-manifest.0a3d66d11dc2f98c819ad77f596186e8.js": "/course_scheduler/precache-manifest.0a3d66d11dc2f98c819ad77f596186e8.js",
     "service-worker.js": "/course_scheduler/service-worker.js",
-    "static/css/main.3965c7e5.chunk.css.map": "/course_scheduler/static/css/main.3965c7e5.chunk.css.map",
+    "static/css/main.f265d5c6.chunk.css.map": "/course_scheduler/static/css/main.f265d5c6.chunk.css.map",
     "static/media/App.css": "/course_scheduler/static/media/background.a6523636.jpeg",
     "static/media/logo3.svg": "/course_scheduler/static/media/logo3.1180ff75.svg"
   }
